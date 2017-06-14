@@ -1,0 +1,7 @@
+body{
+  background-color: black;
+}
+.app{
+  min-height: 100vh;
+}
+*{font-family:"Architects Daughter" !important;}
