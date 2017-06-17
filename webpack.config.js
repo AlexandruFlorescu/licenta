@@ -25,7 +25,12 @@ module.exports = {
         query: {
           presets: ['react', 'es2015', 'react-hmre']
         }
-      }
+      },
+    {
+      test:/\.(png|jpg|gif)$/,
+      loader: "file-loader?name=img/img-[hash:6].[ext]"
+    }
     ]
   }
+
 }

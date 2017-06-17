@@ -1,28 +1,42 @@
 import React, {Component} from 'react'
+import {Card, Header, Image, Icon} from 'semantic-ui-react'
 
 class UserInfo extends Component{
 
-  handleNewId(){
-    this.props.actions.createNewUserId()
-  }
-
-  handleNewIdIfOdd(){
-    this.props.actions.createNewUserIdIfOdd()
-  }
-
-  handleNewIdAsync(){
-    this.props.actions.createNewUserIdAsync()
-  }
-
   render(){
     return (
-      <li>
-        <div> username: {this.props.users[0].username}</div>
-        <div> id: {this.props.users[0].id}</div>
-        <button className="btn-primary" onClick={this.handleNewId.bind(this)}>Update with random ID</button>
-        <button onClick={this.handleNewIdIfOdd.bind(this)}>Update with if odd ID</button>
-        <button onClick={this.handleNewIdAsync.bind(this)}>Update with async ID</button>
-      </li>
+    <Card>
+      <Image src={require('./../assets/matthew.png')}/>
+      <Card.Content>
+        <Card.Header>
+          {this.props.authed.username}
+        </Card.Header>
+        <Card.Meta>
+          <a>
+            <Icon name='user'/>
+            {this.props.authed.crew}
+          </a>
+        </Card.Meta>
+        <Card.Description>
+          {this.props.authed.shortDescription}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+      </Card.Content>
+    </Card>
+
+      // <Grid centered celled="internally">
+      //   <Grid.Row >
+      //     <Grid.Column width={4} color="blue">
+      //       <Image src='/assets/images/unknown.png' size='medium' shape='rounded' />
+      //     </Grid.Column>
+      //     <Grid.Column width={4} color="blue">
+      //       <Header as='h3'> {this.props.authed.username} </Header>
+      //       <Header as='h3'> {this.props.authed.email} </Header>
+      //     </Grid.Column>
+      //   </Grid.Row>
+      // </Grid>
+
     )
   }
 }

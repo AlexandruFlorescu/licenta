@@ -15,8 +15,11 @@ let userReducer = function(users=[], action){
         username: action.payload.username,
         password: action.payload.password,
         email: action.payload.email,
-        id: getId(users)
-    }, ...users]
+      }, ...users];
+
+    case 'INIT_USERS':
+    return action.payload;
+
     default:
       return users;
     }

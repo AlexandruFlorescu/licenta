@@ -41,11 +41,36 @@ let actions = {
 
   //NEWS
   addUser: function(user) {
-    return {
-      type: 'CREATE_USER',
-      payload: user
+    return dispatch =>{
+      fetch('/api/user', {
+          method : 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body : JSON.stringify(user)
+      })
+
+      dispatch({ type: 'CREATE_USER', payload: user })
     }
+
   },
+
+  initializeUsers: function() {
+    return dispatch => {
+      fetch('/api/users')
+                  .then( resp => resp.json() )
+                  .then( respJson => {
+                     dispatch({type: 'INIT_USERS',
+                     payload: respJson})
+                   })
+                   .catch(error => {
+                     console.log(error);
+                   });
+    }
+  }
+
+
 }
 
 export default actions;
