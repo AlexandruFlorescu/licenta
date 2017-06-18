@@ -70,10 +70,10 @@ constructor(props){
       <Grid centered divided>
         <Grid.Row style={{visibility: this.state.displayErrors ? 'visible' : 'hidden'}}>
           <Grid.Column color='yellow'>
-            <ul>
+            <ul type='none'>
               {
                 this.state.errors.map((error) => {
-                    return <li key={error.key}> error.value </li> })
+                    return <li > {error} </li> })
               }
             </ul>
           </Grid.Column>
