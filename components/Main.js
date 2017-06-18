@@ -32,7 +32,7 @@ class Main extends Component{
             </div>
           </Route>
           <Route exact path="/signUp">
-            <RegisterForm addUser={this.props.actions.addUser}/>
+            <RegisterForm addUser={this.props.actions.addUser} users={this.props.users}/>
           </Route>
         </Switch>
       </main>

@@ -38,6 +38,7 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-react": "^0.68.5",
     "url-loader": "^0.5.9",
+    "validator": "^7.0.0",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"

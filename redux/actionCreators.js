@@ -41,6 +41,7 @@ let actions = {
 
   //NEWS
   addUser: function(user) {
+    console.log('add_user');
     return dispatch =>{
       fetch('/api/user', {
           method : 'POST',
