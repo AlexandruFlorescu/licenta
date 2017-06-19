@@ -63,11 +63,28 @@ let actions = {
                   .then( resp => resp.json() )
                   .then( respJson => {
                      dispatch({type: 'INIT_USERS',
-                     payload: respJson})
+                               payload: respJson})
                    })
                    .catch(error => {
                      console.log(error);
                    });
+    }
+  },
+
+  loginUser: function(user) {
+    return dispatch => {
+      fetch('/api/login' , {
+          method : 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body : JSON.stringify(user) })
+          .then( resp => {if(resp.status==200)
+                    dispatch({type: 'LOGIN_USER',
+                    payload: user })
+                })
+          .catch(error => {console.log(error);});
     }
   }
 

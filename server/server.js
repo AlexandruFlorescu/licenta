@@ -46,6 +46,19 @@ app.post('/api/user', (req, res) => {
   });
 });
 
+app.post('/api/login', (req, res) => {
+  var user = req.body;
+  var response = {};
+  Users.findUser(user, (err, obj)=>{
+    if(err){
+      throw err;
+      res.json(err);
+    }
+    res.json(user);
+  })
+})
+
+
 var port = 3000;
 
 app.listen(port, function(error) {

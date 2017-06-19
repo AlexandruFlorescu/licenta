@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Segment, Icon, Menu, Button} from 'semantic-ui-react'
-
 class NavBar extends Component{
 
 
@@ -12,6 +11,9 @@ class NavBar extends Component{
         <Menu.Item as={Link} to="/" name='Home' >Home</Menu.Item>
 
         <Menu.Menu position='right'>
+          <Menu.Item >
+            <Button as={Link} to="/signIn" name='Sign In' primary>Sign IN!</Button>
+          </Menu.Item>
           <Menu.Item as={Link} to="/userProfile">  My profile </Menu.Item>
           <Menu.Item >
             <Button as={Link} to="/signUp" name='Sign Up' primary>Sign UP!</Button>

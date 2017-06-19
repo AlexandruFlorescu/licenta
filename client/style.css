@@ -1,7 +1,11 @@
-body{
+body {
   background-color: black;
 }
-.app{
+
+.app {
   min-height: 100vh;
 }
-*{font-family:"Architects Daughter" !important;}
+
+* {
+  font-family: "Architects Daughter" !important;
+}

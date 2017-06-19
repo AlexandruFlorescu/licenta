@@ -13,6 +13,7 @@ constructor(props){
     },
     errors: [],
     displayErrors: false,
+    beenSubmited: false,
   }
 }
 
@@ -37,19 +38,16 @@ constructor(props){
       if(this.state.user.confirmPassword != this.state.user.password)
           this.state.errors.push("Passwords don't match");
 
-      if(this.state.errors == [])
-        this.state.displayErrors = false;
-      else this.state.displayErrors = true;
-
-      console.log(this.state.displayErrors);
-
+      if(this.state.errors.length <1)
+        this.setState({displayErrors:false});
+      else this.setState({displayErrors:true});
       }
 
 
  handleChange(e, {name, value}){
    this.state.user[name] = value;
-   console.log('valid?');
    this.valid();
+   this.setState({beenSubmited:false})
 
  }
 
@@ -57,11 +55,11 @@ constructor(props){
  handleSubmit(e){
    e.preventDefault();
    if( this.state.errors.length < 1){
-     console.log('valid!');
      this.props.addUser(this.state.user)
    }
    else {
-     this.state.displayErrors = true;
+     this.setState({displayErrors: true});
+     this.setState({beenSubmited: true});
    }
  }
 
@@ -69,7 +67,7 @@ constructor(props){
   return (
       <Grid centered divided>
         <Grid.Row style={{visibility: this.state.displayErrors ? 'visible' : 'hidden'}}>
-          <Grid.Column color='yellow'>
+          <Grid.Column color={this.state.beenSubmited ? 'red' : 'yellow'}>
             <ul type='none'>
               {
                 this.state.errors.map((error) => {

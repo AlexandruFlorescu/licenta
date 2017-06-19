@@ -7,7 +7,7 @@ import {routerReducer} from 'react-router-redux'
 const rootReducer = combineReducers({
     todos: todoReducer,
     users: userReducer,
-
+    authed: authedReducer,
     router: routerReducer
 })
 

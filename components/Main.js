@@ -12,6 +12,7 @@ import TodoList from './TodoList'
 import UserInfo from './UserInfo'
 import UsersList from './UsersList'
 import RegisterForm from './RegisterForm'
+import LoginForm from './LoginForm'
 
 class Main extends Component{
 
@@ -23,7 +24,7 @@ class Main extends Component{
     return (
       <main className="ui inverted">
         <Switch>
-          <Route exact path="/userProfile" ><UserInfo actions={this.props.actions} authed={this.props.users[0]}/></Route>
+          <Route exact path="/userProfile" ><UserInfo actions={this.props.actions} authed={this.props.authed}/></Route>
           <Route exact path="/">
             <div>
               <UsersList users = {this.props.users}/>
@@ -33,6 +34,9 @@ class Main extends Component{
           </Route>
           <Route exact path="/signUp">
             <RegisterForm addUser={this.props.actions.addUser} users={this.props.users}/>
+          </Route>
+          <Route exact path="/signIn">
+            <LoginForm loginUser={this.props.actions.loginUser}/>
           </Route>
         </Switch>
       </main>

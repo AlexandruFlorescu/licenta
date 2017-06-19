@@ -25,6 +25,10 @@ module.exports.getUsers = (callback) => {
   Users.find(callback);
 }
 
+module.exports.findUser = (user,callback) => {
+  Users.find(user, callback);
+}
+
 module.exports.addUser = (user, callback) => {
   Users.create(user, callback);
 }
