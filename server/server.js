@@ -25,9 +25,15 @@ Users = require('./models/user.js');
 mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
+//JWT
+var jwt = require('jsonwebtoken');
+var uuid = require('uuid');
+var secretKey = uuid.v4();
+
+//SET UP ROUTES
+
 app.get('/api/users', (req, res) => {
-    // res.send('ajung');
-    Users.getUsers((err, users) => {
+  Users.getUsers((err, users) => {
       if(err){
         throw err;
       }
@@ -49,15 +55,31 @@ app.post('/api/user', (req, res) => {
 app.post('/api/login', (req, res) => {
   var user = req.body;
   var response = {};
-  Users.findUser(user, (err, obj)=>{
-    if(err){
-      throw err;
-      res.json(err);
+
+  Users.findOne({
+    username: req.body.username
+  }, function(err, user){
+    if(err) throw err;
+
+    if(!user) {
+      throw new Error('user not found');
+      res.json({success: false, message:'User not found'});
     }
-    res.json(user);
+    else if(user){
+        if(user.password != req.body.password){
+            throw new Error('wrong Password');
+            res.json({success:false, message: 'Wrong password'});
+          } else {
+            var token = jwt.sign(user, secretKey);
+            res.json({success: true, message:'Welcome!', token:token});
+          }
+    }
   })
+
 })
 
+
+//END ROUTES
 
 var port = 3000;
 

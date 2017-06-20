@@ -80,9 +80,15 @@ let actions = {
             'Content-Type': 'application/json',
           },
           body : JSON.stringify(user) })
-          .then( resp => {if(resp.status==200)
-                    dispatch({type: 'LOGIN_USER',
-                    payload: user })
+          .then( resp => resp.json() )
+          .then( resp => {
+                    if(resp.success)
+                      dispatch({type: 'LOGIN_SUCCESS',
+                      payload: resp.token })
+                    else
+                      dispatch({type: 'LOGIN_FAILED',
+                      payload: resp.message })
+
                 })
           .catch(error => {console.log(error);});
     }

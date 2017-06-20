@@ -15,7 +15,6 @@ class LoginForm extends Component {
    }
 
   handleSubmit(){
-    console.log(this.state);
     this.props.loginUser(this.state)
   }
 
@@ -23,17 +22,17 @@ class LoginForm extends Component {
     return (
 
     <Grid centered divided>
-      <Grid.Row color='blue' inverted>
+      <Grid.Row color='blue'>
         <Grid.Column width={2}>
-          <Label size="big" color='blue' inverted> Username: </Label>
+          <Label size="big" color='blue' > Username: </Label>
         </Grid.Column>
         <Grid.Column width={6}>
           <Input name="username" placeholder="Username"  onChange={this.handleChange.bind(this)} fluid/>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row color='blue' inverted>
+      <Grid.Row color='blue'>
         <Grid.Column width={2}>
-          <Label size="big" color='blue' inverted> Password: </Label>
+          <Label size="big" color='blue'> Password: </Label>
         </Grid.Column>
         <Grid.Column width={6}>
           <Input name="password" placeholder="Password" type='password' onChange={this.handleChange.bind(this)} fluid/>

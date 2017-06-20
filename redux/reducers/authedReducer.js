@@ -1,6 +1,6 @@
 let authedReducer = function(authed={}, action){
   switch (action.type) {
-    case 'LOGIN_USER':
+    case 'LOGIN_SUCESS':
       return action.payload;
     default: return null
 

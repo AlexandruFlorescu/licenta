@@ -5,11 +5,14 @@ import UserInfo from './UserInfo'
 class UserList extends Component{
 
   render(){
+    console.log(this.props.users);
     return (
     <Grid columns={3} centered divided>
       <Grid.Row>
         {this.props.users.map(user => {
-          return <Grid.Column width={3}><UserInfo authed= {user}/></Grid.Column>
+          return <Grid.Column key={user.id} width={3}>
+                    <UserInfo authed= {user}/>
+                 </Grid.Column>
         })}
       </Grid.Row>
     </Grid>)
