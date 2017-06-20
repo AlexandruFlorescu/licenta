@@ -1,44 +1,5 @@
 let actions = {
 
-//OLDS
-  addTodo: function(text){
-    return {
-      type: 'ADD_TODO',
-      payload: text
-    }
-  },
-
-  completeTodo: function(id){
-    return {
-      type: 'COMPLETE_TODO',
-      payload: id
-    }
-  },
-
-  deleteTodo: function(id){
-    return {
-      type: 'DELETE_TODO',
-      payload: id
-    }
-  },
-
-  createNewUserIdIfOdd: function(){
-    return (dispatch,getState) => {
-      const {user} = getState()
-      if(user.id%2 === 0) {
-        return
-      }
-      dispatch(actions.createNewUserId())
-    }
-  },
-
-  createNewUserIdAsync: function(){
-      return (dispatch) => {
-          setTimeout(()=>{ dispatch(actions.createNewUserId())}, 2500)
-        }
-
-    },
-
   //NEWS
   addUser: function(user) {
     console.log('add_user');
@@ -84,10 +45,10 @@ let actions = {
           .then( resp => {
                     if(resp.success)
                       dispatch({type: 'LOGIN_SUCCESS',
-                      payload: resp.token })
+                              payload: {token:resp.token, user: user}})
                     else
                       dispatch({type: 'LOGIN_FAILED',
-                      payload: resp.message })
+                              payload: resp.message })
 
                 })
           .catch(error => {console.log(error);});

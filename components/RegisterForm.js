@@ -79,7 +79,7 @@ constructor(props){
         <Grid.Row color='blue'>
         {/* Username */}
           <Grid.Column width={2}>
-            <Label size="big" color='blue' inverted> Username: </Label>
+            <Label size="big" color='blue'> Username: </Label>
           </Grid.Column>
           <Grid.Column width={6}>
             <Input name="username" placeholder="Username"  onChange={this.handleChange.bind(this)} fluid/>
@@ -88,7 +88,7 @@ constructor(props){
         {/* Email */}
         <Grid.Row color='blue'>
           <Grid.Column width={2}>
-            <Label size="big" color='blue' inverted> Email: </Label>
+            <Label size="big" color='blue'> Email: </Label>
           </Grid.Column>
           <Grid.Column width={6}>
             <Input name="email" placeholder="Email" type="email" onChange={this.handleChange.bind(this)} fluid/>
@@ -97,7 +97,7 @@ constructor(props){
         {/* Password */}
         <Grid.Row color='blue'>
           <Grid.Column width={2}>
-            <Label size="big" color='blue' inverted> Password: </Label>
+            <Label size="big" color='blue'> Password: </Label>
           </Grid.Column>
           <Grid.Column width={6}>
             <Input name="password" placeholder="Password" type="password" onChange={this.handleChange.bind(this)} fluid/>
@@ -106,7 +106,7 @@ constructor(props){
         {/* Confirm Password */}
         <Grid.Row color='blue'>
           <Grid.Column width={2}>
-            <Label size="big" color='blue' inverted> Confirm: </Label>
+            <Label size="big" color='blue'> Confirm: </Label>
           </Grid.Column>
           <Grid.Column width={6}>
             <Input name="confirmPassword" placeholder="Password" type="password" onChange={this.handleChange.bind(this)} fluid/>
