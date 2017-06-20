@@ -1,0 +1,12 @@
+let const CREATE_USER = 'CREATE_USER';
+let const INIT_USERS = 'INIT_USERS';
+let const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';
+let const CREATE_USER = 'CREATE_USER';

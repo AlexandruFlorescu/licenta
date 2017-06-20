@@ -15,7 +15,7 @@ class Main extends Component{
 
   render(){
     if( this.props.users.length == 0)
-      {console.log('ceva');
+      {
       this.props.actions.initializeUsers();}
 
     return (
@@ -24,7 +24,7 @@ class Main extends Component{
           <Route exact path="/userProfile" ><UserInfo actions={this.props.actions} authed={this.props.authed}/></Route>
           <Route exact path="/">
             <div>
-              <UsersList users = {this.props.users}/>
+              <UsersList users = {this.props.users} authed={this.props.authed}/>
 
             </div>
           </Route>

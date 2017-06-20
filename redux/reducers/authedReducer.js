@@ -1,9 +1,10 @@
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
 let authedReducer = function(authed={}, action){
   switch (action.type) {
-    case 'LOGIN_SUCESS':
-      console.log(action.payload);
-      return action.payload;
-    default: return null
+    case LOGIN_SUCCESS:
+      return Object.assign({}, authed, action.payload);
+    default: return authed;
   }
 }
 

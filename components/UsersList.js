@@ -11,7 +11,7 @@ class UserList extends Component{
       <Grid.Row>
         {this.props.users.map(user => {
           return <Grid.Column key={user.id} width={3}>
-                    <UserInfo authed= {user}/>
+                    <UserInfo user={user} authed={this.props.authed}/>
                  </Grid.Column>
         })}
       </Grid.Row>
