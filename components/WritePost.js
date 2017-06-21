@@ -9,6 +9,7 @@ class WritePost extends Component{
     this.state={
       title: '',
       text: '',
+      author: jwt_decode(this.props.authed.token)._doc._id,
     }
   }
 
@@ -18,7 +19,9 @@ class WritePost extends Component{
 
   handleSubmit(e){
     e.preventDefault();
-    this.setState({author: jwt_decode(this.props.authed.token)._doc._id});
+    // console.log(this.props.authed.token);
+    // this.setState({});
+    // console.log(this.state);
     this.props.sendPost(this.state, this.props.authed.token);
   }
 
@@ -32,7 +35,7 @@ class WritePost extends Component{
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <TextArea name='text' placeholder="soo, what's on your mind today?:)" onChange={this.handleChange.bind(this)}/>
+              <TextArea name='text' autoHeight={true} placeholder="soo, what's on your mind today?:)" onChange={this.handleChange.bind(this)}/>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>

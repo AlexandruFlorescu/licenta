@@ -29,7 +29,12 @@ module.exports = {
     {
       test:/\.(png|jpg|gif)$/,
       loader: "file-loader?name=img/img-[hash:6].[ext]"
-    }
+    },
+    {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader' ,
+      }
+
     ]
   }
 

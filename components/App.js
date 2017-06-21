@@ -5,6 +5,7 @@ import actions from '../redux/actionCreators'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 import NavBar from './NavBar'
 import Main from './Main'
+require('./../client/style.css');
 
 class App extends Component {
 
