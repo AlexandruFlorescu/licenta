@@ -64,8 +64,27 @@ let actions = {
           'Authorization': "Bearer "+token,
         },
         body: JSON.stringify(post) })
+        .then(resp => resp.json())
+        .then(respJson => {
+          console.log(respJson);
+          dispatch({type: c.ADD_POST, payload:respJson})
+        })
     }
-  }
+  },
+
+  initializePosts: function(token){
+    return dispatch => {
+      fetch('/api/posts')
+        .then(resp => resp.json() )
+        .then(respJson => {
+          dispatch({type: c.INIT_POSTS,
+                  payload: respJson})
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
+  },
 
 
 

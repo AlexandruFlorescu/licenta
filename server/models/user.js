@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
       type: String,
       required: true
     },
+    image:{
+      type: String,
+      default: './../assets/matthew.png',
+    },
     create_date:{
       type: Date,
       default: Date.now

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Card, Header, Image, Icon} from 'semantic-ui-react'
 import jwt_decode from 'jwt-decode'
+import UserCard from './UserCard'
 class UserInfo extends Component{
 
   render(){
@@ -10,7 +11,8 @@ class UserInfo extends Component{
          {
           var decoded = jwt_decode(this.props.authed.token);
           return (
-          <Card>
+          <UserCard user={decoded._doc}/>)
+          /*}
             <Image src={require('./../assets/matthew.png')}/>
             <Card.Content>
               <Card.Header>
@@ -28,7 +30,7 @@ class UserInfo extends Component{
             </Card.Content>
             <Card.Content extra>
             </Card.Content>
-          </Card>)
+          </Card>) {*/
         }
         else{
           return (<Header as='h2'> No token! Please log in! </Header>)

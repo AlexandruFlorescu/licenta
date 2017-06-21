@@ -35,7 +35,7 @@ class WritePost extends Component{
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <TextArea name='text' autoHeight={true} placeholder="soo, what's on your mind today?:)" onChange={this.handleChange.bind(this)}/>
+              <TextArea name='text' rows='10' placeholder="soo, what's on your mind today?:)" onChange={this.handleChange.bind(this)}/>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>

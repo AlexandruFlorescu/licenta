@@ -1,3 +1,7 @@
 * {
   font-family: "Architects Daughter" !important;
 }
+textarea{
+  width: 100%;
+  max-width: 100%;
+}

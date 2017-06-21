@@ -31,7 +31,8 @@ var jwt = require('jsonwebtoken');
 var uuid = require('uuid');
 var expressJWT = require('express-jwt');
 var secretKey = 'aracet' //uuid.v4();
-app.use(expressJWT({secret:secretKey}).unless({path:['/','/api/users','/api/register','/api/login']}));
+app.use(expressJWT({secret:secretKey})
+   .unless({path:['/','/api/users','/api/register','/api/login', '/api/posts']}));
 
 //SET UP ROUTES
 app.get('/api/users', (req, res) => {
@@ -97,6 +98,15 @@ app.post('/api/sendPost', (req, res) => {
   //   res.json(user);
   // });
 });
+
+app.get('/api/posts', (req, res) => {
+  Posts.getPosts((err, posts) => {
+    if(err) {
+      throw err;
+    }
+    res.json(posts);
+  })
+})
 //END ROUTES
 
 var port = 3000;

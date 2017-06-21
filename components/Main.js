@@ -17,13 +17,18 @@ class Main extends Component{
   render(){
     if( this.props.users.length == 0)
       {
-      this.props.actions.initializeUsers();}
-    
+      this.props.actions.initializeUsers();
+    }
+    if(this.props.posts.length == 0)
+    {
+      this.props.actions.initializePosts();
+    }
+
     return (
       <main className="ui inverted">
         <Switch>
           <Route exact path="/userProfile" >
-              <UserProfileMesh actions={this.props.actions} authed={this.props.authed}/>
+              <UserProfileMesh actions={this.props.actions} authed={this.props.authed} posts={this.props.posts}/>
           </Route>
           <Route exact path="/">
               <UsersList users = {this.props.users} authed={this.props.authed}/>
