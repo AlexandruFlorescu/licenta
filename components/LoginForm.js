@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Label, Input, Button} from 'semantic-ui-react'
+import {Redirect} from 'react-router';
 
 class LoginForm extends Component {
   constructor(props){
@@ -19,8 +20,11 @@ class LoginForm extends Component {
   }
 
   render(){
-    return (
 
+    if(this.props.authed.token!=null)
+      {return <Redirect push to='/userProfile'/>;}
+    else
+      {return (
     <Grid centered divided>
       <Grid.Row color='blue'>
         <Grid.Column width={2}>
@@ -42,6 +46,7 @@ class LoginForm extends Component {
     </Grid>
 
   )}
+  }
 }
 
 export default LoginForm;

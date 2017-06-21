@@ -22,16 +22,18 @@ app.get('/', function (req, res) {
 });
 
 Users = require('./models/user.js');
+Posts = require('./models/post.js');
 mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
 //JWT
 var jwt = require('jsonwebtoken');
 var uuid = require('uuid');
-var secretKey = uuid.v4();
+var expressJWT = require('express-jwt');
+var secretKey = 'aracet' //uuid.v4();
+app.use(expressJWT({secret:secretKey}).unless({path:['/api/users','/api/register','/api/login']}));
 
 //SET UP ROUTES
-
 app.get('/api/users', (req, res) => {
   Users.getUsers((err, users) => {
       if(err){
@@ -41,7 +43,7 @@ app.get('/api/users', (req, res) => {
     })
 });
 
-app.post('/api/user', (req, res) => {
+app.post('/api/register', (req, res) => {
   var user = req.body;
   Users.addUser(user, (err, user) => {
     if(err) {
@@ -74,11 +76,27 @@ app.post('/api/login', (req, res) => {
             res.json({success: true, message:'Welcome!', token:token});
           }
     }
-  })
+  });
+});
 
-})
-
-
+app.post('/api/sendPost', (req, res) => {
+  //perhaps decode user here?
+  var post = req.body;
+  Posts.addPost(post, (err, post) => {
+    if(err){
+      throw err;
+      res.json(err);
+    }
+    res.json(post);
+  });
+  // Users.findById(req.body.author, (err, user)=>{
+  //   if(err){
+  //     throw err;
+  //     res.json(err);
+  //   }
+  //   res.json(user);
+  // });
+});
 //END ROUTES
 
 var port = 3000;

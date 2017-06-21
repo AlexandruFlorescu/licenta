@@ -1,10 +1,10 @@
-let actions = {
+var c = require('./constants.js')
 
-  //NEWS
+let actions = {
   addUser: function(user) {
     console.log('add_user');
     return dispatch =>{
-      fetch('/api/user', {
+      fetch('/api/register', {
           method : 'POST',
           headers: {
             'Accept': 'application/json',
@@ -13,9 +13,8 @@ let actions = {
           body : JSON.stringify(user)
       })
 
-      dispatch({ type: 'CREATE_USER', payload: user })
+      dispatch({ type: c.CREATE_USER, payload: user })
     }
-
   },
 
   initializeUsers: function() {
@@ -23,7 +22,7 @@ let actions = {
       fetch('/api/users')
                   .then( resp => resp.json() )
                   .then( respJson => {
-                     dispatch({type: 'INIT_USERS',
+                     dispatch({type: c.INIT_USERS,
                                payload: respJson})
                    })
                    .catch(error => {
@@ -44,16 +43,30 @@ let actions = {
           .then( resp => resp.json() )
           .then( resp => {
                     if(resp.success)
-                      dispatch({type: 'LOGIN_SUCCESS',
+                      dispatch({type: c.LOGIN_SUCCESS,
                               payload: {token:resp.token, user: user}})
                     else
-                      dispatch({type: 'LOGIN_FAILED',
+                      dispatch({type: c.LOGIN_FAILED,
                               payload: resp.message })
 
                 })
           .catch(error => {console.log(error);});
     }
+  },
+
+  sendPost: function(post, token) {
+    return dispatch => {
+      fetch('/api/sendPost', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer "+token,
+        },
+        body: JSON.stringify(post) })
+    }
   }
+
 
 
 }
