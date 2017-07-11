@@ -23,11 +23,11 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['react', 'es2015', 'react-hmre']
+          presets: ['react', 'es2015', 'react-hmre', "stage-1"]
         }
       },
     {
-      test:/\.(png|jpg|gif)$/,
+      test:/\.(png|jpg|gif|svg)$/,
       loader: "file-loader?name=img/img-[hash:6].[ext]"
     },
     {

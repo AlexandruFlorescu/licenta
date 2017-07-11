@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {TextArea, Grid, Input, Button} from 'semantic-ui-react'
+import {TextArea, Grid, Input, Button, Confirm} from 'semantic-ui-react'
 import jwt_decode from 'jwt-decode'
 
 class WritePost extends Component{
@@ -10,6 +10,7 @@ class WritePost extends Component{
       title: '',
       text: '',
       author: jwt_decode(this.props.authed.token)._doc._id,
+      open: false,
     }
   }
 
@@ -19,14 +20,22 @@ class WritePost extends Component{
 
   handleSubmit(e){
     e.preventDefault();
-    // console.log(this.props.authed.token);
-    // this.setState({});
-    // console.log(this.state);
+    this.setState({ open: false })
     this.props.sendPost(this.state, this.props.authed.token);
   }
 
+  show() {this.setState({ open: true })}
+  handleCancel() {this.setState({ open: false })}
+
   render(){
+
       return (
+        <div>
+        <Confirm
+          open={this.state.open}
+          onCancel={this.handleCancel.bind(this)}
+          onConfirm={this.handleSubmit.bind(this)}
+        />
         <Grid>
           <Grid.Row>
             <Grid.Column>
@@ -40,10 +49,11 @@ class WritePost extends Component{
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-            <Button primary inverted onClick={this.handleSubmit.bind(this)}> Send! </Button>
+              <Button primary inverted onClick={this.show.bind(this)}> Send! </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        </div>
         )
    }
 }

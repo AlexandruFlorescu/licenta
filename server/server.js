@@ -31,8 +31,8 @@ var jwt = require('jsonwebtoken');
 var uuid = require('uuid');
 var expressJWT = require('express-jwt');
 var secretKey = 'aracet' //uuid.v4();
-app.use(expressJWT({secret:secretKey})
-   .unless({path:['/','/api/users','/api/register','/api/login', '/api/posts']}));
+// app.use(expressJWT({secret:secretKey})
+//    .unless({path:['/','/api/users','/api/register','/api/signIn', '/api/posts']}));
 
 //SET UP ROUTES
 app.get('/api/users', (req, res) => {
@@ -73,7 +73,7 @@ app.post('/api/login', (req, res) => {
             throw new Error('wrong Password');
             res.json({success:false, message: 'Wrong password'});
           } else {
-            var token = jwt.sign(user, secretKey);
+            var token = jwt.sign(user, secretKey, { expiresIn: '4h' });
             res.json({success: true, message:'Welcome!', token:token});
           }
     }

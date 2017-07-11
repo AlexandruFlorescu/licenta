@@ -6,7 +6,8 @@ import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
 let initialState = {
   users:[],
-  authed: {}
+  authed: {},
+  ui:{color:'green'},
 }
 
 ///test

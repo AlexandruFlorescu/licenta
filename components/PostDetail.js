@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid} from 'semantic-ui-react';
+import {Container, Header, Comment, Divider, Button} from 'semantic-ui-react';
 
 class PostDetail extends Component{
   constructor(props){
@@ -7,9 +7,9 @@ class PostDetail extends Component{
   }
 
   render(){
-    console.log(this.props.post);
     return(
-    <li>{this.props.post.text}</li> )
+    
+)
   }
 }
 

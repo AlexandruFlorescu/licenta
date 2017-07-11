@@ -1,7 +1,291 @@
-* {
-  font-family: "Architects Daughter" !important;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-textarea{
-  width: 100%;
-  max-width: 100%;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*AFTER RESET*/
+:root {
+  --default-font: "Architects Daughter";
+	--electricBlue: #4CDEF5;
+	--peaGreen: #A4D555;
+	--blushPink: #FF5992;
+	--orchidPurple: #841983;
+	--orange: rgb(222, 144, 80);
+
+
+	--orangered: green; /*orangered;*/
+
+	--freshWater: rgb(136, 187, 214);
+	--ICE: #99D3DF;
+	--plaster: #CDCDCD;
+	--aquamarine: #0CE89D ;
+	--radioactive: #0DFF00;
+	--aquamarineODL: #02C8A7;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+}
+body {
+    color: #222;
+    height: 100vh;
+    font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+		background: url('vertical-waves.png') ,radial-gradient(var(--ICE),  var(--aquamarine)) fixed;
+}
+.app{
+	height: 95vh;
+}
+main{
+	flex: 9;
+  height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+/*NAVBAR STYLING*/
+/*
+.navBar {
+	flex: 1;
+  height: 100%;
+	width: 9vw;
+	min-width: 130px;
+	display: flex;
+  align-items: center;
+  justify-content: space-between;
+	flex-direction: column;
+  padding: 0px 1px;
+  border-radius: 3px;
+	position: fixed;
+	box-shadow: 0 0 0 2px rgba(124, 70, 20, 0.5);
+	background: orangered;
+}
+.logo{
+
+	background: url(seaStarLogo.png);
+  clip: rect(0px,60px,200px,0px);
+}
+
+button.primaryButton{
+  display: inline-block;
+	text-decoration: none;
+	outline: none;
+  color: orangered;
+  padding: 10px 20px;
+	font-size: 16px;
+  text-align: center;
+	letter-spacing: .1em;
+  border-radius: 7px;
+	border: 1px solid var(--orange);
+	background-color: white;
+	margin: 3px;
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,.33);
+	transform-origin: left top;
+	transition-property: background-color;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-out;
+}
+
+button.inNav{
+	width: 97%;
+	height: 15%;
+}
+
+button.primaryButton:hover{
+  background-color: orangered;
+	color:white;
+}
+
+button.primaryButton:active{
+  color: white;
+	box-shadow: inset 1px 1px 3px 2px rgba(0, 0, 0, .3);
+}
+
+.navBar .auth {
+  float: right;
+}
+
+
+/*loginForm registerForm related*/
+
+/*.forms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 50%;
+  flex-direction: column;
+	border: 1px solid var(--orchidPurple);
+}*/
+
+/*.formsContainer {
+  height: calc(70% + 15px);
+	width: calc(100% + 15px);
+  display: inline;
+  align-items: stretch;
+  justify-content: stretch;
+	flex-basis: 50%;
+	background-color: white;
+	/*background: none;*/
+	/*background: url('woodenTexture.png') repeat;
+	box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3)
+	/*border: 1px solid var(--orchidPurple);
+}*/
+
+/*.spansHeader{
+	height: 10%;
+	width: 100%;
+	background-color: orangered;
+}*/
+
+/*login branch*/
+/*.loginWrapper {
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.loginWrapper h1{
+	text-transform: uppercase;
+	font-size: 175%;
+	font-weight: 300;
+	text-align: center;
+	padding-left: 5px;
+	margin:25px 0;
+	color: orangered;
+}
+
+.loginForm {
+	flex: 1;
+  text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/*.loginForm label{
+	font-size: 135%;
+	padding-top: 5px;
+}
+.loginForm button{
+	margin: 3px;
+
+}
+
+.loginForm input{
+	margin: 0 3px;
+	padding: 10px 20px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.loginForm input:focus{
+	box-shadow: 1px 1px 0px 1px rgba(76, 222, 245, .1);
+}
+/*register branch
+.registerWrapper {
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.registerForm{
+  text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.registerForm label{
+	font-size: 135%;
+	padding-top: 5px;
+}
+
+.registerForm input{
+	margin: 0 3px;
+}
+
+.registerForm button{
+	margin: 3px;
+}
+
+.registerWrapper h1{
+	font-size: 175%;
+	text-align: left;
+	padding-left: 5px;
+	margin-top: 5px;
+	border-bottom: 1px solid var(--orchidPurple);
+}
+
+.registerWrapper p{
+	padding: 2px;
+}
+
+.dashboardWrapper{
+	background-color: rgba(245, 17, 25, 0.44);
+
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding: 15px;
+}
+
+.userCard{
+	background-color: rgba(54, 120, 164, 0.48);
+	flex:1;
+}
+
+.postsView{
+	background-color: rgba(79, 182, 70, 0.63);
+	flex:3;
+}
+*/

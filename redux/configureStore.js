@@ -7,6 +7,6 @@ let finalCreateStore = compose(
   applyMiddleware(createLogger(), thunk)
 )(createStore)
 
-export default function configureStore( iState={users:[], authed:{}, posts:[] }) {
+export default function configureStore( iState={users:[], authed:{}, posts:[], ui:{color:'green'} }) {
   return finalCreateStore(rootReducer, iState);
 }

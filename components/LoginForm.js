@@ -1,6 +1,26 @@
 import React, {Component} from 'react';
-import {Grid, Label, Input, Button} from 'semantic-ui-react'
 import {Redirect} from 'react-router';
+import styled from 'styled-components';
+import Button from './Button/Button';
+import StrippedContainer from './StrippedContainer/StrippedContainer';
+import Header from './Header/Header';
+import Input from './Input/Input';
+
+const Label = styled.label`
+  font-size: 135%;
+  color: ${props => props.theme.color};
+`;
+
+const LoginWrapper = styled.div`
+  height: 80%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+  padding: 0px 10px;
+  `;
 
 class LoginForm extends Component {
   constructor(props){
@@ -8,43 +28,39 @@ class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
+
+      errors: [],
+      displayErrors: false,
+      beenSubmited: false,
+
     }
   }
 
-   handleChange(e, {name, value}){
+  handleLoginChange(e, {name, value}){
      this.state[name] = value;
    }
 
-  handleSubmit(){
-    this.props.loginUser(this.state)
+  handleLoginSubmit(){
+    this.props.actions.loginUser(this.state)
   }
 
   render(){
 
-    if(this.props.authed.token!=null)
+    if(this.props.states.authed.token!=null)
       {return <Redirect push to='/userProfile'/>;}
     else
       {return (
-    <Grid centered divided>
-      <Grid.Row color='blue'>
-        <Grid.Column width={2}>
-          <Label size="big" color='blue' > Username: </Label>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Input name="username" placeholder="Username"  onChange={this.handleChange.bind(this)} fluid/>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row color='blue'>
-        <Grid.Column width={2}>
-          <Label size="big" color='blue'> Password: </Label>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Input name="password" placeholder="Password" type='password' onChange={this.handleChange.bind(this)} fluid/>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row color='blue'> <Button primary inverted onClick={this.handleSubmit.bind(this)}> JOIN! </Button> </Grid.Row>
-    </Grid>
+          <StrippedContainer header='Welcome back! :)'>
+              <LoginWrapper>
+                  <Label> Username: </Label>
+                  <Input name="username" onChange={this.handleLoginChange.bind(this)}/>
 
+                  <Label> Password: </Label>
+                  <Input name="password" type="password" onChange={this.handleLoginChange.bind(this)}/>
+
+                  <Button>Login</Button>
+              </LoginWrapper>
+          </StrippedContainer>
   )}
   }
 }

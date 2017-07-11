@@ -2,7 +2,6 @@ var c = require('./constants.js')
 
 let actions = {
   addUser: function(user) {
-    console.log('add_user');
     return dispatch =>{
       fetch('/api/register', {
           method : 'POST',
@@ -54,6 +53,10 @@ let actions = {
     }
   },
 
+  logOff: function(){
+    return {type: c.LOG_OFF, payload: {}};
+  },
+
   sendPost: function(post, token) {
     return dispatch => {
       fetch('/api/sendPost', {
@@ -66,13 +69,12 @@ let actions = {
         body: JSON.stringify(post) })
         .then(resp => resp.json())
         .then(respJson => {
-          console.log(respJson);
           dispatch({type: c.ADD_POST, payload:respJson})
         })
     }
   },
 
-  initializePosts: function(token){
+  initializePosts: function(){
     return dispatch => {
       fetch('/api/posts')
         .then(resp => resp.json() )
@@ -85,6 +87,10 @@ let actions = {
         })
     }
   },
+
+  changeColor: function(color){
+    return {type: c.CHANGE_COLOR, payload: color};
+  }
 
 
 

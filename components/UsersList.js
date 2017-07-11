@@ -1,21 +1,27 @@
 import React, {Component} from 'react'
-import {Grid, Header, Image, Icon} from 'semantic-ui-react'
+import styled from 'styled-components'
 import UserCard from './UserCard'
+
+const DashboardWrapper= styled.div`
+  width: 95%;
+  height: 90%;
+  margin-left:101px;
+  padding: 5px;
+  border:1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+`;
 
 class UserList extends Component{
 
   render(){
     return (
-    <Grid columns={3} centered divided>
-      <Grid.Row>
-        {this.props.users.map(user => {
-          return <Grid.Column key={user.id} width={3}>
-                    <UserCard user={user}/>
-                 </Grid.Column>
-        })}
-      </Grid.Row>
-    </Grid>)
-
+      <DashboardWrapper>
+          {this.props.state.users.map( (user)=>{return <UserCard key={this.props.state.users.indexOf(user)} user={user}/>} )}
+      </DashboardWrapper>
+    )
   }
 }
 
