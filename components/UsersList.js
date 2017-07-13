@@ -4,22 +4,23 @@ import UserCard from './UserCard'
 
 const DashboardWrapper= styled.div`
   width: 95%;
-  height: 90%;
+  height: 95%;
   margin-left:101px;
   padding: 5px;
-  border:1px solid red;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  align-items: space-around;
+  justify-content: space-around;
 `;
 
 class UserList extends Component{
 
   render(){
+    console.log(this.props.states.auth);
+    console.log(this.props.states.auth.isAuthenticated());
     return (
       <DashboardWrapper>
-          {this.props.state.users.map( (user)=>{return <UserCard key={this.props.state.users.indexOf(user)} user={user}/>} )}
+          {this.props.states.users.map( (user)=>{return <UserCard key={this.props.states.users.indexOf(user)} user={user}/>} )}
       </DashboardWrapper>
     )
   }

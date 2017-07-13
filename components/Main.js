@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -12,42 +12,41 @@ import LoginForm from './LoginForm'
 // import WritePost from './WritePost'
 import UserProfileMesh from './userProfileMesh'
 import ContactForm from './ContactForm'
+import Callback from './Callback/Callback'
 
 class Main extends Component{
 
   render(){
     if( this.props.users.length == 0)
     {
-      this.props.actions.initializeUsers();
+      // this.props.actions.initializeUsers();
     }
-    if(this.props.posts.length == 0)
-    {
-      this.props.actions.initializePosts();
-    }
+
 
     return (
       <main>
         <Switch>
           <Route exact path="/userProfile" >
-            <UserProfileMesh actions={this.props.actions} authed={this.props.authed} posts={this.props.posts} users = {this.props.users}/>
+            <UserProfileMesh actions={this.props.actions} states={{auth:this.props.auth, posts:this.props.posts, users:this.props.users}}/>
           </Route>
           <Route exact path="/">
-            <UsersList state = {{users:this.props.users, authed:this.props.authed}}/>
+            <UsersList states = {{users:this.props.users, auth:this.props.auth}}/>
           </Route>
           <Route exact path="/signIn">
-            <LoginForm actions={{loginUser:this.props.actions.loginUser,addUser:this.props.actions.addUser}} states={{authed:this.props.authed, users:this.props.users}}/>
+            <LoginForm actions={{loginUser:this.props.actions.loginUser}} states={{auth:this.props.auth, users:this.props.users}}/>
           </Route>
           <Route exact path="/signUp">
             <RegisterForm test={true} actions={{addUser:this.props.actions.addUser}} states={{users: this.props.users}} />
           </Route>
           <Route exact path="/contact">
             <ContactForm>
-
             </ContactForm>
           </Route>
+          <Route path="/callback" render={(props)=>{
+              this.props.auth.handleAuthentication();
+              return <Callback {...props} />
+              }}/>
         </Switch>
-
-
       </main>
     )
   }

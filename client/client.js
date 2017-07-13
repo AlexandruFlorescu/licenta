@@ -4,6 +4,7 @@ import App from '../components/App'
 import configureStore from '../redux/configureStore'
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
+import history from '../components/history.js'
 let initialState = {
   users:[],
   authed: {},
@@ -14,7 +15,7 @@ let initialState = {
 
 let store = configureStore(initialState);
 render(
-  <Provider store={store}>
+  <Provider history={history} store={store}>
     <BrowserRouter >
       <App />
     </BrowserRouter>

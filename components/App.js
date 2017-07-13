@@ -10,8 +10,8 @@ import actions from '../redux/actionCreators'
 import {ThemeProvider} from 'styled-components'
 require('./../client/style.css');
 
-
-
+import Auth from './Auth'
+const auth = new Auth();
 
 class App extends Component {
 
@@ -23,8 +23,8 @@ class App extends Component {
     return (
               <ThemeProvider theme={theme}>
                 <div className="app">
-                  <NavBar authed={this.props.authed} logOff={this.props.actions.logOff} changeColor={this.props.actions.changeColor}/>
-                  <Main props={this.props}/>
+                  <NavBar states={{auth:auth}} actions={{changeColor:this.props.actions.changeColor}}/>
+                  <Main props={this.props} auth={auth}/>
                   {this.props.children}
                   <Footer> </Footer>
                 </div>

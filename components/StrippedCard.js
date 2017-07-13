@@ -6,14 +6,15 @@ export default (props) =>
   {
     const StrippedCard = styled.div`
 
-      height: 30%;
-      width:15%;
-      display: inline;
+      width:275px;
+      height:400px;
       background-color: white;
       box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3);
-      margin-left: 10px;
-      margin-bottom: 5px;
+      perspective: 700;
+      margin-bottom: 10px;
       transition: all .2s ease-in-out;
+      text-align: center;
+      border-radius: 5px;
 
       &:hover{
         box-shadow: 0px 8px 8px 5px rgba(0,0,0,.3);

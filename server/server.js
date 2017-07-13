@@ -16,10 +16,12 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static('./dist'));
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(path.resolve('client/index.html'));
     // res.send('please use /api')
 });
+
+
 
 Users = require('./models/user.js');
 Posts = require('./models/post.js');
@@ -27,10 +29,10 @@ mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
 //JWT
-var jwt = require('jsonwebtoken');
-var uuid = require('uuid');
-var expressJWT = require('express-jwt');
-var secretKey = 'aracet' //uuid.v4();
+// var jwt = require('jsonwebtoken');
+// var uuid = require('uuid');
+// var expressJWT = require('express-jwt');
+// var secretKey = 'aracet' //uuid.v4();
 // app.use(expressJWT({secret:secretKey})
 //    .unless({path:['/','/api/users','/api/register','/api/signIn', '/api/posts']}));
 

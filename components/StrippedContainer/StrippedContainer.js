@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import classnames from 'classnames';
 
 export default (props) =>
-  { 
+  {
     const StrippedContainer = styled.div`
       height: 95%;
       width: 90%;
@@ -11,6 +11,7 @@ export default (props) =>
       display: inline;
       background-color: white;
       box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3);
+      border-radius: 5px;
 
         > .upperStrip{
         height: 15%;

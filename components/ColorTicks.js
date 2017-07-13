@@ -53,7 +53,7 @@ class ColorTicks extends Component{
           <ColorTick color='orangered' onClick={()=>this.changeColor('orangered')}></ColorTick>
           <ColorTick color='#FF5992' onClick={()=>this.changeColor('#FF5992')}></ColorTick>
           <ColorTick color='indigo' onClick={()=>this.changeColor('indigo')}></ColorTick>
-          <ColorTick color='yellowgreen' onClick={()=>this.changeColor('yellowgreen')}></ColorTick>
+          <ColorTick color='black' onClick={()=>this.changeColor('black')}></ColorTick>
 
         </TicksTray>
         <Header>Color?</Header>

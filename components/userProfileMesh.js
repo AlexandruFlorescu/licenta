@@ -12,26 +12,24 @@ class UserProfileMesh extends Component{
   constructor(props){
     super(props);
   }
+
+  componentWillMount() {
+    this.setState({ profile: {} });
+    console.log(this.props.states.auth);
+    const { userProfile, getProfile } = this.props.states.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
+
   render(){
-    var Sticky = require('react-stickynode');
-    if(this.props.authed.token!=null)
-      return(
-      <Grid>
-        <Grid.Column width={1}></Grid.Column>
-        <Grid.Column width={3}>
-          <Sticky enabled={true} top={50}>
-            <UserInfo actions={this.props.actions} authed={this.props.authed}/>
-          </Sticky>
-        </Grid.Column>
-        <Grid.Column width={11}>
-          <UserDetail/>
-          {/*<WritePost sendPost={this.props.actions.sendPost} authed={this.props.authed}/>*/}
-          <ListPosts authed={this.props.authed} posts={this.props.posts.filter(post=> post.author == jwt_decode(this.props.authed.token)._doc._id)} author={jwt_decode(this.props.authed.token)._doc}/>
-        </Grid.Column>
-      </Grid>
-    )
-    else
-      {return <Redirect push to='/'/>;}
+
+    console.log(this.state);
+  return <div>{this.state.profile.user_metadata}</div>
   }
 }
 export default UserProfileMesh;

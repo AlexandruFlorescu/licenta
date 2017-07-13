@@ -7,6 +7,7 @@ import ColorTicks from './ColorTicks'
 import Home from '../assets/home.svg';
 import Login from '../assets/login.svg';
 import Contact from '../assets/contact.svg';
+import Profile from '../assets/profile.svg';
 
 const Wrapper = styled.div`
   flex:1;
@@ -51,7 +52,7 @@ const MyLink = styled(Link)`
   text-decoration: none;
   width:100%;
   height:77px;
-  color: ${props => props.theme.color};;
+  color: ${props => props.theme.color};
   background-color:white;
   box-shadow: 0px 3px 3px 2px rgba(0,0,0,.3);
 
@@ -59,30 +60,44 @@ const MyLink = styled(Link)`
 
 class NavBar extends Component{
 
-  logOff(){
-    this.props.logOff();
+
+  logOut(){
+    this.props.states.auth.logout();
+  }
+
+  logIn(){
+    this.props.states.auth.login();
   }
 
   render(){
-        return (
-          <NavWrapper>
-            <ColorTicks changeColor={this.props.changeColor}></ColorTicks>
+        if(this.props.states.auth != null)
+          {
+            return (
+            <NavWrapper>
+              <ColorTicks changeColor={this.props.actions.changeColor}></ColorTicks>
 
-            <Divider></Divider>
-              <MyLink to='/'> <NavButton background={Home}> Home </NavButton> </MyLink>
-            <Divider></Divider>
-              <MyLink to='/signIn'><NavButton background={Login}> Login </NavButton> </MyLink>
-            <Divider></Divider>
-              <MyLink to='/signUp'><NavButton background={Login}> Register </NavButton> </MyLink>
-            <Divider></Divider>
-              <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
-            <Divider></Divider>
-              <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
-            <Divider></Divider>
-              <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
-          </NavWrapper>
-        )
+              <Divider></Divider>
+                <MyLink to='/userProfile'><NavButton background={Profile}> Profile </NavButton> </MyLink>
+
+              <Divider></Divider>
+                <MyLink to='/'> <NavButton background={Home}> Home </NavButton> </MyLink>
+              <Divider></Divider>
+                {this.props.states.auth.isAuthenticated() ? <MyLink to='#'><NavButton background={Login} onClick={this.logOut.bind(this)}> Logoff </NavButton> </MyLink>
+              : <MyLink to='#'><NavButton background={Login} onClick={this.logIn.bind(this)}> Login </NavButton> </MyLink> }
+
+              <Divider></Divider>
+                <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
+            </NavWrapper>)
+          }
       }
 }
 
 export default NavBar
+
+// <Divider></Divider>
+// <MyLink to='/signUp'><NavButton background={Login}> Register </NavButton> </MyLink>
+
+// <Divider></Divider>
+// <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
+// <Divider></Divider>
+// <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>

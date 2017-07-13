@@ -36,20 +36,19 @@ class LoginForm extends Component {
     }
   }
 
-  handleLoginChange(e, {name, value}){
-     this.state[name] = value;
+  handleLoginChange(e){
+     this.state[e.target.name] = e.target.value;
+     console.log(this.state);
    }
 
   handleLoginSubmit(){
-    this.props.actions.loginUser(this.state)
+    console.log(this.props.actions);
+    this.props.states.auth.login();
   }
 
   render(){
-
-    if(this.props.states.authed.token!=null)
-      {return <Redirect push to='/userProfile'/>;}
-    else
-      {return (
+    console.log(this.props.states);
+    return (
           <StrippedContainer header='Welcome back! :)'>
               <LoginWrapper>
                   <Label> Username: </Label>
@@ -58,10 +57,10 @@ class LoginForm extends Component {
                   <Label> Password: </Label>
                   <Input name="password" type="password" onChange={this.handleLoginChange.bind(this)}/>
 
-                  <Button>Login</Button>
+                  <Button onClick={this.handleLoginSubmit.bind(this)}>Login</Button>
               </LoginWrapper>
           </StrippedContainer>
-  )}
+        )
   }
 }
 

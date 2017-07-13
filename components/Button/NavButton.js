@@ -29,6 +29,10 @@ export default (props) =>
       color:white;
     }
 
+    &:hover img{
+      filter: invert(100%);
+    }
+
     &:active{
       color: white;
       background-color: ${props => props.theme.color};
@@ -44,6 +48,7 @@ export default (props) =>
   const Image = styled.img`
     width: 20px;
     height: 20px;
+
   `;
-    return (<Button ><Image src={props.background}></Image>{props.children}</Button>)
+    return (<Button onClick={props.onClick}><Image src={props.background}></Image>{props.children}</Button>)
   };

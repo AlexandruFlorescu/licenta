@@ -17,6 +17,34 @@ const userSchema = mongoose.Schema({
       type: String,
       default: './../assets/matthew.png',
     },
+    crew:{
+      type: String,
+      default: 'Solo Wave Rider',
+    },
+    role:{
+      type: String,
+      default: 'One Man Army',
+    },
+    favTool:{
+      type: String,
+      default: 'No Tool',
+    },
+    age:{
+      type: Number,
+      default: 0,
+    },
+    reputation:{
+      type: Number,
+      default: 100,
+      min: 0,
+      max: 9999,
+    },
+    honor:{
+      type: Number,
+      default: 100,
+      min: 0,
+      max: 9999,
+    },
     create_date:{
       type: Date,
       default: Date.now
