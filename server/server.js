@@ -17,99 +17,16 @@ app.use(webpackHotMiddleware(compiler));
 app.use(express.static('./dist'));
 
 app.get('*', function (req, res) {
-    res.sendFile(path.resolve('client/index.html'));
-    // res.send('please use /api')
+  res.sendFile(path.resolve('client/index.html'));
+  // res.send('please use /api')
 });
 
-
+// console.dir(manageAuth0);
 
 Users = require('./models/user.js');
 Posts = require('./models/post.js');
 mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
-
-//JWT
-// var jwt = require('jsonwebtoken');
-// var uuid = require('uuid');
-// var expressJWT = require('express-jwt');
-// var secretKey = 'aracet' //uuid.v4();
-// app.use(expressJWT({secret:secretKey})
-//    .unless({path:['/','/api/users','/api/register','/api/signIn', '/api/posts']}));
-
-//SET UP ROUTES
-app.get('/api/users', (req, res) => {
-  Users.getUsers((err, users) => {
-      if(err){
-        throw err;
-      }
-      res.json(users);
-    })
-});
-
-app.post('/api/register', (req, res) => {
-  var user = req.body;
-  Users.addUser(user, (err, user) => {
-    if(err) {
-      throw err;
-      res.json(err);
-    }
-    res.json(user);
-  });
-});
-
-app.post('/api/login', (req, res) => {
-  var user = req.body;
-  var response = {};
-
-  Users.findOne({
-    username: req.body.username
-  }, function(err, user){
-    if(err) throw err;
-
-    if(!user) {
-      throw new Error('user not found');
-      res.json({success: false, message:'User not found'});
-    }
-    else if(user){
-        if(user.password != req.body.password){
-            throw new Error('wrong Password');
-            res.json({success:false, message: 'Wrong password'});
-          } else {
-            var token = jwt.sign(user, secretKey, { expiresIn: '4h' });
-            res.json({success: true, message:'Welcome!', token:token});
-          }
-    }
-  });
-});
-
-app.post('/api/sendPost', (req, res) => {
-  //perhaps decode user here?
-  var post = req.body;
-  Posts.addPost(post, (err, post) => {
-    if(err){
-      throw err;
-      res.json(err);
-    }
-    res.json(post);
-  });
-  // Users.findById(req.body.author, (err, user)=>{
-  //   if(err){
-  //     throw err;
-  //     res.json(err);
-  //   }
-  //   res.json(user);
-  // });
-});
-
-app.get('/api/posts', (req, res) => {
-  Posts.getPosts((err, posts) => {
-    if(err) {
-      throw err;
-    }
-    res.json(posts);
-  })
-})
-//END ROUTES
 
 var port = 3000;
 

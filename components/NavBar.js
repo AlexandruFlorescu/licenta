@@ -8,7 +8,6 @@ import Home from '../assets/home.svg';
 import Login from '../assets/login.svg';
 import Contact from '../assets/contact.svg';
 import Profile from '../assets/profile.svg';
-
 const Wrapper = styled.div`
   flex:1;
   display: flex;
@@ -55,13 +54,13 @@ const MyLink = styled(Link)`
   color: ${props => props.theme.color};
   background-color:white;
   box-shadow: 0px 3px 3px 2px rgba(0,0,0,.3);
-
 `;
 
 class NavBar extends Component{
 
 
   logOut(){
+    this.props.actions.logOff();
     this.props.states.auth.logout();
   }
 
@@ -75,9 +74,9 @@ class NavBar extends Component{
             return (
             <NavWrapper>
               <ColorTicks changeColor={this.props.actions.changeColor}></ColorTicks>
-
-              <Divider></Divider>
-                <MyLink to='/userProfile'><NavButton background={Profile}> Profile </NavButton> </MyLink>
+              {this.props.states.auth.isAuthenticated() && <Divider></Divider> }
+              {this.props.states.auth.isAuthenticated() &&
+                 <MyLink to='/userProfile'><NavButton background={Profile}> Profile </NavButton> </MyLink> }
 
               <Divider></Divider>
                 <MyLink to='/'> <NavButton background={Home}> Home </NavButton> </MyLink>

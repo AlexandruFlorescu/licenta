@@ -9,7 +9,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid user_metadata profile'
+    scope: 'openid profile'
   });
   constructor() {
     this.login = this.login.bind(this);
@@ -18,24 +18,27 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.getProfile = this.getProfile.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
+    this.getManagementToken=this.getManagementToken.bind(this);
   }
   login(){
     // history.replace('/');
     this.auth0.authorize();
   }
-  logout(){
-    localStorage.removeItem('acces_token');
+  logout(manageToo = false){
+    localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    if(manageToo)
+      localStorage.removeItem('manageToken');
     this.userProfile = null;
-    history.replace('/');
+    if(!manageToo)
+      history.replace('/');
   }
 
   userProfile;
 
   getAccessToken() {
     const accessToken = localStorage.getItem('access_token');
-    console.log(accessToken);
     if (!accessToken) {
       throw new Error('No access token found');
     }
@@ -51,25 +54,13 @@ export default class Auth {
       cb(err, profile);
     });
   }
-
-  getMetadata(cb){
-    let accessToken = this.getAccessToken();
-    this.auth0.client.userMetadata(accessToken, (err, metadata)=>{
-      if(metadata){
-        return metadata;
-      }
-      cb(err, metadata);
-    })
-  }
-
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if(authResult && authResult.accessToken && authResult.idToken) {
+        history.replace('/userProfile');
         this.setSession(authResult);
-        history.replace('/');
       }
       else{
-        console.log('failed here');
         // history.replace('/');
         // this.setSession(authResult);
       }
@@ -84,6 +75,19 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    history.replace('/');
+    // history.replace('/');
   }
+
+  getManagementToken(){
+    return fetch('https://seastar.eu.auth0.com/oauth/token',{
+        method: 'POST',
+        headers: {'content-type': 'application/json',
+        'Accept': 'application/json' },
+        body: '{"client_id":"nyly8zhnseW2GiWyaENl5qasAlxzEpNz","client_secret":"vp1B33lZcr3WJbVslSn2bgMB3nCy2kiOAhJJXfD4Ed4tKw1H8FHs21y1mCc-IEZi","audience":"https://seastar.eu.auth0.com/api/v2/","grant_type":"client_credentials"}'
+      }).then(resp=>resp.json())
+        .then(resp=> {
+          localStorage.setItem('manageToken','Bearer ' + resp.access_token);
+        })
+  }
+
 }

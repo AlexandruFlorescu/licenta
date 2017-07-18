@@ -5,16 +5,20 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import actions from '../redux/actionCreators'
 
-// import UserInfo from './UserInfo'
 import UsersList from './UsersList'
-import RegisterForm from './RegisterForm'
-import LoginForm from './LoginForm'
-// import WritePost from './WritePost'
-import UserProfileMesh from './userProfileMesh'
+import UserCrewProfileContainer from './UserCrewProfileContainer'
 import ContactForm from './ContactForm'
 import Callback from './Callback/Callback'
+import styled from 'styled-components'
+
+const FlexWrapper = styled.div`
+  display: flex;
+  flex:1
+  height:100%;
+  `;
 
 class Main extends Component{
+
 
   render(){
     if( this.props.users.length == 0)
@@ -26,17 +30,11 @@ class Main extends Component{
     return (
       <main>
         <Switch>
-          <Route exact path="/userProfile" >
-            <UserProfileMesh actions={this.props.actions} states={{auth:this.props.auth, posts:this.props.posts, users:this.props.users}}/>
-          </Route>
           <Route exact path="/">
-            <UsersList states = {{users:this.props.users, auth:this.props.auth}}/>
+            <UsersList states = {{users:this.props.users, auth:this.props.auth}} actions={{initializeUsers:this.props.actions.initializeUsers, updateUsers:this.props.actions.updateUsers}}/>
           </Route>
-          <Route exact path="/signIn">
-            <LoginForm actions={{loginUser:this.props.actions.loginUser}} states={{auth:this.props.auth, users:this.props.users}}/>
-          </Route>
-          <Route exact path="/signUp">
-            <RegisterForm test={true} actions={{addUser:this.props.actions.addUser}} states={{users: this.props.users}} />
+          <Route exact path="/userProfile" >
+            <UserCrewProfileContainer actions={this.props.actions} states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed}}/>
           </Route>
           <Route exact path="/contact">
             <ContactForm>
@@ -64,3 +62,12 @@ function mapDispatchToProps(dispatch){
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))
+
+
+
+// <Route exact path="/signIn">
+//   <LoginForm actions={{loginUser:this.props.actions.loginUser}} states={{auth:this.props.auth, users:this.props.users}}/>
+// </Route>
+// <Route exact path="/signUp">
+//   <RegisterForm test={true} actions={{addUser:this.props.actions.addUser}} states={{users: this.props.users}} />
+// </Route>

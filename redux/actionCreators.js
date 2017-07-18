@@ -1,4 +1,5 @@
 var c = require('./constants.js')
+var c = require('./constants.js')
 
 let actions = {
   addUser: function(user) {
@@ -16,40 +17,95 @@ let actions = {
     }
   },
 
-  initializeUsers: function() {
-    return dispatch => {
-      fetch('/api/users')
-                  .then( resp => resp.json() )
-                  .then( respJson => {
-                     dispatch({type: c.INIT_USERS,
-                               payload: respJson})
-                   })
-                   .catch(error => {
-                     console.log(error);
-                   });
+  checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    } else {
+      let error = new Error(response.statusText);
+      error.response = response;
+      throw error;
     }
   },
 
-  loginUser: function(user) {
-    return dispatch => {
-      fetch('/api/login' , {
-          method : 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body : JSON.stringify(user) })
-          .then( resp => resp.json() )
-          .then( resp => {
-                    if(resp.success)
-                      dispatch({type: c.LOGIN_SUCCESS,
-                              payload: {token:resp.token, user: user}})
-                    else
-                      dispatch({type: c.LOGIN_FAILED,
-                              payload: resp.message })
+  initializeUsers: function() {
+    console.log(localStorage.getItem('manageToken'));
+    return dispatch =>{
+      fetch('https://seastar.eu.auth0.com/api/v2/users',{
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        }
+      }).then(resp=>resp.json())
+      .then(respJson=>dispatch({type:c.INIT_USERS, payload:respJson}))
+    }
+  },
 
-                })
-          .catch(error => {console.log(error);});
+  updateUser: function(userId, body) {
+    return dispatch => {
+      fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body:JSON.stringify(body)
+      }).then(resp=>resp.json())
+      .then(respJson=>/* DISPACH FOR REDUX UPDATE*/console.log(respJson))
+    }
+  },
+
+  getUser: function(userId) {
+    return dispatch => {
+      fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        }
+      }).then(resp=>resp.json())
+      .then(respJson=>
+              dispatch({type: c.LOGIN_SUCCESS,
+                      payload: respJson })
+    )
+    }
+  },
+
+  // return dispatch => {
+  //   fetch('/api/users')
+  //               .then( resp => resp.json() )
+  //               .then( respJson => {
+  //                  dispatch({type: c.INIT_USERS,
+  //                            payload: respJson})
+  //                })
+  //                .catch(error => {
+  //                  console.log(error);
+  //                });
+  // }
+
+
+  loginUser: function(userId) {
+
+    // while(!userId) {let i=0;}
+    // console.count();
+    if(userId) console.log(userId);
+    return dispatch => {
+      fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        }
+      }).then(resp=>resp.json())
+      .then(respJson=>{
+              // console.log(respJson.message);
+              dispatch({type: c.LOGIN_SUCCESS,
+                      payload: respJson })
+                    }
+    )
     }
   },
 

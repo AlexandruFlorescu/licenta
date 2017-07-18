@@ -71,20 +71,21 @@ const Highlight = styled.span`
 class UserCard extends Component{
 
   render(){
-    var image = require('./../assets/matthew.png');
+    // console.log(this.props.user.user_metadata);
+    // var image = require();
       return (
-          <StrippedCard header={this.props.user.username}>
+          <StrippedCard header={this.props.user.nickname}>
             <CardWrapper>
-              <Img src={image}>
+              <Img src={this.props.user.picture}>
                 <div className='glow'>
                 </div>
               </Img>
               <Divider/>
-              <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.user.crew}</Highlight> </Header>
-              <Header> <Label background={Role}> Role:</Label> <Highlight>{this.props.user.role}</Highlight></Header>
-              <Header> <Label background={Tool}> Tools:</Label> <Highlight>{this.props.user.favTool}</Highlight></Header>
-              <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.user.honor}</Highlight> </Header>
-              <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.user.reputation}</Highlight></Header>
+              <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.user.user_metadata.crew}</Highlight> </Header>
+              <Header> <Label background={Role}> Role:</Label> <Highlight>{this.props.user.user_metadata.role}</Highlight></Header>
+              <Header> <Label background={Tool}> Tools:</Label> <Highlight>{this.props.user.user_metadata.tools}</Highlight></Header>
+              <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.user.user_metadata.honor}</Highlight> </Header>
+              <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.user.user_metadata.reputation}</Highlight></Header>
             </CardWrapper>
           </StrippedCard>
         )

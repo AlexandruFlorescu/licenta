@@ -14,13 +14,21 @@ const DashboardWrapper= styled.div`
 `;
 
 class UserList extends Component{
+  constructor(props){
+    super(props);
+    this.state = {users: []};
+  }
 
+  componentWillMount(){
+    if(this.props.states.users.length <= 0 && localStorage.getItem('manageToken'))
+      {this.props.actions.initializeUsers();}
+  }
   render(){
-    console.log(this.props.states.auth);
-    console.log(this.props.states.auth.isAuthenticated());
+    console.log(this.props.states.users);
     return (
       <DashboardWrapper>
-          {this.props.states.users.map( (user)=>{return <UserCard key={this.props.states.users.indexOf(user)} user={user}/>} )}
+          {this.props.states.users.map( (user)=>
+            <UserCard key={this.props.states.users.indexOf(user)} user={user}/> )}
       </DashboardWrapper>
     )
   }

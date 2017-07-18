@@ -86,6 +86,10 @@ main{
 	justify-content: center;
 }
 
+.half{
+	width: 45%!important;
+}
+
 
 
 /*NAVBAR STYLING*/

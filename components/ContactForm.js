@@ -43,6 +43,10 @@ class LoginForm extends Component {
     this.state = {}
   }
 
+  contact(){
+    console.log('dasdasd');
+  }
+
   render(){
     return (
           <StrippedContainer header=" I am looking forward to hearing from you! :)">
@@ -57,7 +61,7 @@ class LoginForm extends Component {
                 <Label> Shoot!: </Label>
                 <TextArea name="mai multe"/>
 
-                <Button>Send message</Button>
+                <Button onClick={this.contact.bind(this)}>Send message</Button>
               </LoginWrapper>
           </StrippedContainer>
         )}

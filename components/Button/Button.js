@@ -35,5 +35,5 @@ export default (props) =>
       box-shadow: inset 1px 1px 3px 2px rgba(0, 0, 0, .3);
     }
 `;
-    return (<Button onClick={props.onClick}>{props.children}</Button>)
+    return (<Button {...props}>{props.children}</Button>)
   };

@@ -32,7 +32,7 @@ export default (props) =>
 
 
     return (
-      <StrippedContainer>
+      <StrippedContainer {...props}>
         <div className="upperStrip">
           <StripHeader>{props.header}</StripHeader>
         </div>

@@ -15,6 +15,15 @@ const auth = new Auth();
 
 class App extends Component {
 
+  componentDidMount(){
+
+    auth.getManagementToken();
+    // window.addEventListener('beforeunload', auth.logout(true))
+  }
+
+  componentWillUnmount(){
+    // window.removeEventListener('beforeunload', auth.logout);
+  }
 
   render() {
       const theme={
@@ -23,7 +32,7 @@ class App extends Component {
     return (
               <ThemeProvider theme={theme}>
                 <div className="app">
-                  <NavBar states={{auth:auth}} actions={{changeColor:this.props.actions.changeColor}}/>
+                  <NavBar states={{auth:auth}} actions={{changeColor:this.props.actions.changeColor, logOff:this.props.actions.logOff}}/>
                   <Main props={this.props} auth={auth}/>
                   {this.props.children}
                   <Footer> </Footer>
