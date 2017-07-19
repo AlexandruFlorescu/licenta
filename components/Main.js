@@ -11,30 +11,25 @@ import ContactForm from './ContactForm'
 import Callback from './Callback/Callback'
 import styled from 'styled-components'
 
-const FlexWrapper = styled.div`
-  display: flex;
-  flex:1
-  height:100%;
-  `;
-
 class Main extends Component{
 
+  componentWillMount(){
+    if(this.props.users.length <= 0 && localStorage.getItem('manageToken'))
+      {this.props.actions.initializeUsers();}
+  }
 
   render(){
-    if( this.props.users.length == 0)
-    {
-      // this.props.actions.initializeUsers();
-    }
-
-
     return (
       <main>
         <Switch>
           <Route exact path="/">
-            <UsersList states = {{users:this.props.users, auth:this.props.auth}} actions={{initializeUsers:this.props.actions.initializeUsers, updateUsers:this.props.actions.updateUsers}}/>
+            <UsersList
+              users={this.props.users}/>
           </Route>
           <Route exact path="/userProfile" >
-            <UserCrewProfileContainer actions={this.props.actions} states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed}}/>
+            <UserCrewProfileContainer
+              actions={this.props.actions}
+              states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed}}/>
           </Route>
           <Route exact path="/contact">
             <ContactForm>
@@ -48,26 +43,5 @@ class Main extends Component{
       </main>
     )
   }
-
 }
-
-function mapStateToProps(state){
-  return state;
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))
-
-
-
-// <Route exact path="/signIn">
-//   <LoginForm actions={{loginUser:this.props.actions.loginUser}} states={{auth:this.props.auth, users:this.props.users}}/>
-// </Route>
-// <Route exact path="/signUp">
-//   <RegisterForm test={true} actions={{addUser:this.props.actions.addUser}} states={{users: this.props.users}} />
-// </Route>
+export default Main

@@ -33,7 +33,7 @@ class App extends Component {
           <ThemeProvider theme={theme}>
             <div className="app">
               <NavBar auth={auth} actions={{changeColor:this.props.actions.changeColor, logOff:this.props.actions.logOff}}/>
-              <Main props={this.props} auth={auth}/>
+              <Main {...this.props} />
               <Footer> </Footer>
             </div>
           </ThemeProvider>
