@@ -1,7 +1,11 @@
+//externals
 import React, {Component} from 'react'
 import styled from 'styled-components'
+
+//internals
 import UserCard from './UserCard'
 
+//stuff I should have declared someplace else
 const DashboardWrapper= styled.div`
   width: 95%;
   height: 95%;

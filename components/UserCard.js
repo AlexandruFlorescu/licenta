@@ -1,7 +1,12 @@
+//externals
 import React, {Component} from 'react'
-import StrippedCard from './StrippedCard'
 import styled from 'styled-components'
 import { lighten } from 'polished'
+
+//internals
+import StrippedCard from './StrippedCard'
+
+//SVGs
 import Role from '../assets/role.svg';
 import Honor from '../assets/honor.svg';
 import Crew from '../assets/crew.svg';
@@ -9,6 +14,7 @@ import Age from '../assets/age.svg';
 import Tool from '../assets/tool.svg';
 import Reputation from '../assets/carma.svg';
 
+//stuff that I should have declared someplace else
 const Img = styled.div`
   background: url(${props=>props.src}) 50% 50% no-repeat;
   background-size: cover;
@@ -22,32 +28,25 @@ const Img = styled.div`
 
   transition: all 0.6s ease-in-out;
   transform-style: preserve-3d;
-`;
-
-
+  `;
 const Header = styled.h3`
   color: ${props=>props.theme.color};
   font-weight: 700;
   text-align:center;
   width:100%;
   line-height: 30px;
-`;
-
+  `;
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
+  `;
 const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: ${props=>props.theme.color};
-`;
-
-
-
+  `;
 const Label = styled.label`
   color: black;
   width: 125px;
@@ -61,12 +60,11 @@ const Label = styled.label`
     width:30px;
     height:30px;
   }
-`;
-
+  `;
 const Highlight = styled.span`
   border: 1px solid ${props=>props.theme.color};
   background-color: ${props=> lighten(0.4, props.theme.color)};
-`;
+  `;
 
 class UserCard extends Component{
 
@@ -92,6 +90,4 @@ class UserCard extends Component{
 
   }
 }
-
 export default UserCard
-//  './../assets/matthew.png' this.props.user.image
