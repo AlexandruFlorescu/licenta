@@ -87,10 +87,6 @@ let actions = {
 
 
   loginUser: function(userId) {
-
-    // while(!userId) {let i=0;}
-    // console.count();
-    if(userId) console.log(userId);
     return dispatch => {
       fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
         method: 'GET',
@@ -101,11 +97,9 @@ let actions = {
         }
       }).then(resp=>resp.json())
       .then(respJson=>{
-              // console.log(respJson.message);
               dispatch({type: c.LOGIN_SUCCESS,
                       payload: respJson })
-                    }
-    )
+                    } )
     }
   },
 

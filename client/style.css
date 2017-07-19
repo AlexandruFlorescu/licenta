@@ -88,6 +88,11 @@ main{
 
 .half{
 	width: 45%!important;
+	margin-left: 0px!important;
+}
+
+.ofForm{
+	width: calc(100% - 125px)!important;
 }
 
 

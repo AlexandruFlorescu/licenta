@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Grid} from 'semantic-ui-react';
+import Button from './Button/Button';
+import Input from './Input/Input';
 import {Redirect} from 'react-router';
 import StrippedContainer from './StrippedContainer/StrippedContainer';
 import styled from 'styled-components';
@@ -10,10 +11,26 @@ import Crew from '../assets/crew.svg';
 import Age from '../assets/age.svg';
 import Tool from '../assets/tool.svg';
 import Reputation from '../assets/carma.svg';
+import Callback from './Callback/Callback';
+
 
 const FlexWrapper = styled.div`
   display: flex;
-  flex:1
+  flex:1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 10px;
+  `;
+
+const BottomWrapper = styled.div`
+  display: flex;
+  height: calc(85% - 250px);
+  flex:1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   `;
 
 const Img = styled.div`
@@ -58,38 +75,127 @@ const Img = styled.div`
     background-color: ${props=> lighten(0.4, props.theme.color)};
   `;
 
-  const Properties = styled.div`
+  const Divider = styled.div`
+    width:100%;
+    height:1px;
+    background: ${props=>props.theme.color};
+  `;
+
+  const Properties = styled.div``;
+
+  const Textarea = styled.textarea`
+  width:95%;
+  height:85%;
+  resize: none;
   `;
 
 class UserProfileContainer extends Component{
   constructor(props){
+    console.log('UserProfileContainer:constructor');
     super(props);
+    this.state={
+      editing: false,
+      user: {
+        nickname: 'JohnDoe',
+        user_metadata:{
+          crew: 'a',
+          role: 'a',
+          tools: 'a',
+          honor: 'a',
+          reputation: 'a',
+          description: 'a',
+        }
+      },
+    }
+    // console.log(this.state);
+  }
+
+  componentWillMount(){
+    // console.log(this.props.authed);
+    console.log('UserProfileContainer:componentDidMount');
+    // console.log(this.props.authed);
+
+    if(this.props.authed.user_metadata)
+      this.setState({user: this.props.authed});
+  }
+
+  // setMyState(){
+  // // console.log('UserProfileContainer:componentWillReceiveProps');
+  // // if(this.props.authed.user_metadata)
+  //   this.setState({user: this.props.authed});
+  // }
+
+  toggleEdit(){
+    console.log('UserProfileContainer:toggleEdit');
+    this.setState({editing:!this.state.editing});
   }
 
   render(){
-    console.log(this.props);
-    return (
-      <StrippedContainer header={this.props.authed.nickname} className="half">
+    // console.log(this.state);
+    // console.log(this.props.authed);
+    // if(this.props.authed)
+    console.log('UserProfileContainer:render');
+    // console.log(this.props);
+    // this.componentWillMount();
+    if(!this.props.authed.user_metadata)
+      return <Callback></Callback>
+    else
+    {
+      return (
+      <StrippedContainer header={this.state.user.nickname} className="half">
         <FlexWrapper>
-          <Img src={this.props.authed.picture}>
+          <Img src={this.state.user.picture}>
             <div className='glow'>
             </div>
           </Img>
           <Properties>
-            <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.authed.user_metadata.crew}</Highlight> </Header>
-            <Header> <Label background={Role}> Role:</Label> <Highlight>{this.props.authed.user_metadata.role}</Highlight></Header>
-            <Header> <Label background={Tool}> Tools:</Label> <Highlight>{this.props.authed.user_metadata.tools}</Highlight></Header>
-            <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.authed.user_metadata.honor}</Highlight> </Header>
-            <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.authed.user_metadata.reputation}</Highlight></Header>
+            <Header> <Label background={Crew}> Crew:</Label>
+              {this.state.editing
+                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.crew}/>
+                :  <Highlight>{this.state.user.user_metadata.crew}</Highlight>
+              }
+            </Header>
+            <Header> <Label background={Role}> Role:</Label>
+              {this.state.editing
+                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.role}/>
+                :  <Highlight>{this.state.user.user_metadata.role}</Highlight>
+              }
+            </Header>
+            <Header> <Label background={Tool}> Tools:</Label>
+              {this.state.editing
+                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.tools}/>
+                :  <Highlight>{this.state.user.user_metadata.tools}</Highlight>
+              }
+            </Header>
+            <Header> <Label background={Honor}> Honor:</Label>
+              {this.state.editing
+                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.honor}/>
+                :  <Highlight>{this.state.user.user_metadata.honor}</Highlight>
+              }
+            </Header>
+            <Header> <Label background={Reputation}> Reputation:</Label>
+              {this.state.editing
+                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.reputation}/>
+                :  <Highlight>{this.state.user.user_metadata.reputation}</Highlight>
+              }
+            </Header>
+            {this.state.editing
+               ? <Button onClick={this.toggleEdit.bind(this)}> Save! </Button>
+               : <Button onClick={this.toggleEdit.bind(this)}> Edit! </Button>
+           }
           </Properties>
         </FlexWrapper>
-        <FlexWrapper>
-          <p>
-            Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte demonstrativă pentru literele respective. Nu doar că a supravieţuit timp de cinci secole, dar şi a facut saltul în tipografia electronică practic neschimbată. A fost popularizată în anii 60 odată cu ieşirea colilor Letraset care conţineau pasaje Lorem Ipsum, iar mai recent, prin programele de publicare pentru calculator, ca Aldus PageMaker care includeau versiuni de Lorem Ipsum.
-          </p>
-        </FlexWrapper>
+        <Divider></Divider>
+        <BottomWrapper>
+          {this.state.editing
+            ? <Textarea placeholder={this.state.user.user_metadata.description}></Textarea>
+            : <p>
+                {this.state.user.user_metadata.description}
+              </p>
+          }
+        </BottomWrapper>
       </StrippedContainer>
-    )
+    )}
   }
 }
 export default UserProfileContainer;
