@@ -124,6 +124,8 @@ class UserProfileContainer extends Component{
   }
 
   handleChange(e){
+    console.log(e.target);
+    this.setState()
     this.state.user.user_metadata[e.target.name] = e.target.value;
     console.log(this.state.user.user_metadata[e.target.name]);
   }
