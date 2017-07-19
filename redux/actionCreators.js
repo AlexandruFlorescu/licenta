@@ -1,10 +1,8 @@
 var c = require('./constants.js')
-var c = require('./constants.js')
 
 let actions = {
-
   initializeUsers: function() {
-    console.log(localStorage.getItem('manageToken'));
+    // console.log(localStorage.getItem('manageToken'));
     return dispatch =>{
       fetch('https://seastar.eu.auth0.com/api/v2/users',{
         headers:{
@@ -16,7 +14,6 @@ let actions = {
       .then(respJson=>dispatch({type:c.INIT_USERS, payload:respJson}))
     }
   },
-
   updateUser: function(userId, body) {
     return dispatch => {
       fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
@@ -31,7 +28,6 @@ let actions = {
       .then(respJson=>/* DISPACH FOR REDUX UPDATE*/console.log(respJson))
     }
   },
-
   getUser: function(userId) {
     return dispatch => {
       fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
@@ -48,7 +44,6 @@ let actions = {
     )
     }
   },
-
   loginUser: function(userId) {
     return dispatch => {
       fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
@@ -65,17 +60,12 @@ let actions = {
                     } )
     }
   },
-
   logOff: function(){
     return {type: c.LOG_OFF, payload: {}};
   },
-
   changeColor: function(color){
     return {type: c.CHANGE_COLOR, payload: color};
   }
-
-
-
 }
 
 export default actions;

@@ -1,9 +1,13 @@
+//externals
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import { lighten } from 'polished'
+
+//internal
 import UserProfileContainer from './UserProfileContainer'
 import CrewProfileContainer from './CrewProfileContainer'
 
+//stuff that should be declared someplace else :3
 const Container = styled.div`
   flex:1;
   display: flex;

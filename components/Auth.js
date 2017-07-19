@@ -61,8 +61,8 @@ export default class Auth {
         this.setSession(authResult);
       }
       else{
-        // history.replace('/');
-        // this.setSession(authResult);
+        // throw new Error('Baad bad autho :\'');
+        history.replace('/');
       }
     })
   }
