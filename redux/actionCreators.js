@@ -2,30 +2,6 @@ var c = require('./constants.js')
 var c = require('./constants.js')
 
 let actions = {
-  addUser: function(user) {
-    return dispatch =>{
-      fetch('/api/register', {
-          method : 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body : JSON.stringify(user)
-      })
-
-      dispatch({ type: c.CREATE_USER, payload: user })
-    }
-  },
-
-  checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      let error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }
-  },
 
   initializeUsers: function() {
     console.log(localStorage.getItem('manageToken'));
@@ -73,19 +49,6 @@ let actions = {
     }
   },
 
-  // return dispatch => {
-  //   fetch('/api/users')
-  //               .then( resp => resp.json() )
-  //               .then( respJson => {
-  //                  dispatch({type: c.INIT_USERS,
-  //                            payload: respJson})
-  //                })
-  //                .catch(error => {
-  //                  console.log(error);
-  //                });
-  // }
-
-
   loginUser: function(userId) {
     return dispatch => {
       fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
@@ -105,37 +68,6 @@ let actions = {
 
   logOff: function(){
     return {type: c.LOG_OFF, payload: {}};
-  },
-
-  sendPost: function(post, token) {
-    return dispatch => {
-      fetch('/api/sendPost', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer "+token,
-        },
-        body: JSON.stringify(post) })
-        .then(resp => resp.json())
-        .then(respJson => {
-          dispatch({type: c.ADD_POST, payload:respJson})
-        })
-    }
-  },
-
-  initializePosts: function(){
-    return dispatch => {
-      fetch('/api/posts')
-        .then(resp => resp.json() )
-        .then(respJson => {
-          dispatch({type: c.INIT_POSTS,
-                  payload: respJson})
-        })
-        .catch(error => {
-          console.log(error);
-        })
-    }
   },
 
   changeColor: function(color){

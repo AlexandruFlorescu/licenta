@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var config = require('../webpack.config.js');
 var webpack = require('webpack');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
@@ -18,15 +18,11 @@ app.use(express.static('./dist'));
 
 app.get('*', function (req, res) {
   res.sendFile(path.resolve('client/index.html'));
-  // res.send('please use /api')
 });
 
-// console.dir(manageAuth0);
-
-Users = require('./models/user.js');
-Posts = require('./models/post.js');
-mongoose.connect('mongodb://localhost/seastar');
-var db = mongoose.connection;
+// Users = require('./models/user.js');
+// mongoose.connect('mongodb://localhost/seastar');
+// var db = mongoose.connection;
 
 var port = 3000;
 

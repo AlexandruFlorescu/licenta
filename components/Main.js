@@ -15,10 +15,20 @@ class Main extends Component{
 
   componentWillMount(){
     if(this.props.users.length <= 0 && localStorage.getItem('manageToken'))
-      {this.props.actions.initializeUsers();}
+      this.props.actions.initializeUsers();
+
+    if(this.props.auth.isAuthenticated())
+      {const { userProfile, getProfile } = this.props.auth;
+      if (!userProfile) {
+        getProfile((err, profile) => {
+          console.log(profile);
+          this.props.actions.loginUser(profile.sub)
+        });
+      }}
   }
 
   render(){
+    console.log(this.props.authed);
     return (
       <main>
         <Switch>
@@ -28,7 +38,6 @@ class Main extends Component{
           </Route>
           <Route exact path="/userProfile" >
             <UserCrewProfileContainer
-              actions={this.props.actions}
               states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed}}/>
           </Route>
           <Route exact path="/contact">

@@ -35,6 +35,7 @@ const MyLink = styled(Link)`
 
 class NavBar extends Component{
   logOut(){
+    console.log('logOut');
     this.props.actions.logOff();
     this.props.auth.logout();
   }

@@ -57,7 +57,7 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if(authResult && authResult.accessToken && authResult.idToken) {
-        history.replace('/userProfile');
+        history.replace('/');
         this.setSession(authResult);
       }
       else{

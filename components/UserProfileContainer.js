@@ -1,19 +1,24 @@
+//externals
 import React, {Component} from 'react';
-import Button from './Button/Button';
-import Input from './Input/Input';
 import {Redirect} from 'react-router';
-import StrippedContainer from './StrippedContainer/StrippedContainer';
 import styled from 'styled-components';
 import { lighten } from 'polished'
+
+//internals
+import Button from './Button/Button';
+import Input from './Input/Input';
+import StrippedContainer from './StrippedContainer/StrippedContainer';
+import Callback from './Callback/Callback';
+
+//SVGs
 import Role from '../assets/role.svg';
 import Honor from '../assets/honor.svg';
 import Crew from '../assets/crew.svg';
 import Age from '../assets/age.svg';
 import Tool from '../assets/tool.svg';
 import Reputation from '../assets/carma.svg';
-import Callback from './Callback/Callback';
 
-
+//things that should have been declared someplace else :3
 const FlexWrapper = styled.div`
   display: flex;
   flex:1;
@@ -22,7 +27,6 @@ const FlexWrapper = styled.div`
   text-align: center;
   padding: 5px 10px;
   `;
-
 const BottomWrapper = styled.div`
   display: flex;
   height: calc(85% - 250px);
@@ -32,7 +36,6 @@ const BottomWrapper = styled.div`
   align-items: center;
   text-align: center;
   `;
-
 const Img = styled.div`
   background: url(${props=>props.src}) 50% 50% no-repeat;
   background-size: cover;
@@ -107,41 +110,29 @@ class UserProfileContainer extends Component{
         }
       },
     }
-    // console.log(this.state);
   }
 
   componentWillMount(){
-    // console.log(this.props.authed);
     console.log('UserProfileContainer:componentDidMount');
-    // console.log(this.props.authed);
-
     if(this.props.authed.user_metadata)
       this.setState({user: this.props.authed});
   }
-
-  // setMyState(){
-  // // console.log('UserProfileContainer:componentWillReceiveProps');
-  // // if(this.props.authed.user_metadata)
-  //   this.setState({user: this.props.authed});
-  // }
 
   toggleEdit(){
     console.log('UserProfileContainer:toggleEdit');
     this.setState({editing:!this.state.editing});
   }
 
+  handleChange(e){
+    this.state.user.user_metadata[e.target.name] = e.target.value;
+  }
+
   render(){
-    // console.log(this.state);
-    // console.log(this.props.authed);
-    // if(this.props.authed)
     console.log('UserProfileContainer:render');
-    // console.log(this.props);
-    // this.componentWillMount();
     if(!this.props.authed.user_metadata)
       return <Callback></Callback>
     else
-    {
-      return (
+    { return (
       <StrippedContainer header={this.state.user.nickname} className="half">
         <FlexWrapper>
           <Img src={this.state.user.picture}>
@@ -151,31 +142,31 @@ class UserProfileContainer extends Component{
           <Properties>
             <Header> <Label background={Crew}> Crew:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.crew}/>
+                ?  <Input className='ofForm' name='crew' value={this.state.user.user_metadata.crew} onChange={this.handleChange.bind(this)}/>
                 :  <Highlight>{this.state.user.user_metadata.crew}</Highlight>
               }
             </Header>
             <Header> <Label background={Role}> Role:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.role}/>
+                ?  <Input className='ofForm' name='role' value={this.state.user.user_metadata.role} onChange={this.handleChange.bind(this)}/>
                 :  <Highlight>{this.state.user.user_metadata.role}</Highlight>
               }
             </Header>
             <Header> <Label background={Tool}> Tools:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.tools}/>
+                ?  <Input className='ofForm' name='tools' value={this.state.user.user_metadata.tools} onChange={this.handleChange.bind(this)}/>
                 :  <Highlight>{this.state.user.user_metadata.tools}</Highlight>
               }
             </Header>
             <Header> <Label background={Honor}> Honor:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.honor}/>
+                ?  <Input className='ofForm' name='honor' value={this.state.user.user_metadata.honor} onChange={this.handleChange.bind(this)}/>
                 :  <Highlight>{this.state.user.user_metadata.honor}</Highlight>
               }
             </Header>
             <Header> <Label background={Reputation}> Reputation:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' placeholder={this.state.user.user_metadata.reputation}/>
+                ?  <Input className='ofForm' name='reputation' value={this.state.user.user_metadata.reputation} onChange={this.handleChange.bind(this)}/>
                 :  <Highlight>{this.state.user.user_metadata.reputation}</Highlight>
               }
             </Header>
@@ -188,7 +179,7 @@ class UserProfileContainer extends Component{
         <Divider></Divider>
         <BottomWrapper>
           {this.state.editing
-            ? <Textarea placeholder={this.state.user.user_metadata.description}></Textarea>
+            ? <Textarea name='description' value={this.state.user.user_metadata.description} onChange={this.handleChange.bind(this)}></Textarea>
             : <p>
                 {this.state.user.user_metadata.description}
               </p>

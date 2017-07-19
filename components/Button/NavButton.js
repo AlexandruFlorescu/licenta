@@ -44,5 +44,5 @@ export default (props) =>
       height: 20px;
       `;
 
-    return (<Button ><Image src={props.background}></Image>{props.children}</Button>)
+    return (<Button {...props}><Image src={props.background}></Image>{props.children}</Button>)
 };
