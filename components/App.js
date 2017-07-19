@@ -26,18 +26,17 @@ class App extends Component {
   }
 
   render() {
-      const theme={
-        color: this.props.ui.color
-      }
+    const theme={
+      color: this.props.ui.color
+    }
     return (
-              <ThemeProvider theme={theme}>
-                <div className="app">
-                  <NavBar states={{auth:auth}} actions={{changeColor:this.props.actions.changeColor, logOff:this.props.actions.logOff}}/>
-                  <Main props={this.props} auth={auth}/>
-                  {this.props.children}
-                  <Footer> </Footer>
-                </div>
-              </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <div className="app">
+              <NavBar auth={auth} actions={{changeColor:this.props.actions.changeColor, logOff:this.props.actions.logOff}}/>
+              <Main props={this.props} auth={auth}/>
+              <Footer> </Footer>
+            </div>
+          </ThemeProvider>
     )
   }
 
@@ -54,3 +53,5 @@ function mapDispatchToProps(dispatch){
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+
+//{this.props.children}

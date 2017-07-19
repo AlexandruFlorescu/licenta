@@ -5,7 +5,7 @@ const TicksTray = styled.div`
   margin: 10px;
   display:flex;
   justify-content: center;
-`;
+  `;
 
 const ColorTick = styled.div`
   width:10px;
@@ -13,17 +13,16 @@ const ColorTick = styled.div`
   margin: 1px;
   border: 1px solid black;
   background-color: ${props => props.color}
-`;
+  `;
 
 const Header = styled.h3`
   letter-spacing: 0.1em;
   font-size: 16px;
   text-align: center;
   color: ${props=>props.theme.color};
-`;
+  `;
 
 const Wrapper = styled.div`
-  background-color: white;
   text-decoration: none;
   width:100px;
   height:77px;
@@ -31,8 +30,7 @@ const Wrapper = styled.div`
   background-color:white;
   box-shadow: 0px 3px 3px 2px rgba(0,0,0,.3);
   border-top: 15px solid ${props => props.theme.color};
-
-`;
+  `;
 
 class ColorTicks extends Component{
   constructor(props){
@@ -51,10 +49,9 @@ class ColorTicks extends Component{
           <ColorTick color='green' onClick={()=>this.changeColor('green')}></ColorTick>
           <ColorTick color='brown' onClick={()=>this.changeColor('brown')}></ColorTick>
           <ColorTick color='orangered' onClick={()=>this.changeColor('orangered')}></ColorTick>
-          <ColorTick color='#FF5992' onClick={()=>this.changeColor('#FF5992')}></ColorTick>
+          <ColorTick color='magenta' onClick={()=>this.changeColor('magenta')}></ColorTick>
           <ColorTick color='indigo' onClick={()=>this.changeColor('indigo')}></ColorTick>
           <ColorTick color='black' onClick={()=>this.changeColor('black')}></ColorTick>
-
         </TicksTray>
         <Header>Color?</Header>
       </Wrapper>
