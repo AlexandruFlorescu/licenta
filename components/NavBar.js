@@ -12,6 +12,7 @@ import Home from '../assets/home.svg';
 import Login from '../assets/login.svg';
 import Contact from '../assets/contact.svg';
 import Profile from '../assets/profile.svg';
+import Carma from '../assets/carma.svg';
 
 const NavWrapper = styled.div`
   position: fixed;
@@ -56,6 +57,8 @@ class NavBar extends Component{
       : <MyLink to='#'><NavButton background={Login} onClick={this.logIn.bind(this)}> Login </NavButton> </MyLink> }
       <Divider></Divider>
         <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
+      <Divider></Divider>
+        <MyLink to='/crewsList'><NavButton background={Carma}> Crews </NavButton> </MyLink>
     </NavWrapper>
     )
   }

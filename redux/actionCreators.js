@@ -63,6 +63,24 @@ let actions = {
   logOff: function(){
     return {type: c.LOG_OFF, payload: {}};
   },
+
+  initializeCrews: function(){
+    console.log('initializeCrews')
+    return dispatch=>{
+      fetch('/api/getCrews', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        }
+      }).then(resp=>{console.log(resp);resp.json()})
+      .then(respJson => {
+        dispatch({type: c.INIT_CREWS,
+                  payload: respJson})
+      })
+    }
+  },
   changeColor: function(color){
     return {type: c.CHANGE_COLOR, payload: color};
   }

@@ -6,7 +6,7 @@ export default (props) =>
   {
     const StrippedCard = styled.div`
       width:275px;
-      height:400px;
+      height:313px;
       background-color: white;
       box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3);
       perspective: 700;
@@ -20,7 +20,7 @@ export default (props) =>
         transform: scale(1.1);
       }
       > .upperStrip{
-      height: 15%;
+      height: 60px;
       width: 100%;
       background-color: ${props => props.theme.color};
       display: flex;

@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router';
 import styled from 'styled-components';
 import { lighten } from 'polished'
+import update from 'immutability-helper';
+import cloneDeep from 'lodash'
 
 //internals
 import Button from './Button/Button';
@@ -98,79 +100,84 @@ class UserProfileContainer extends Component{
     super(props);
     this.state={
       editing: false,
-      user: {
-        nickname: 'JohnDoe',
-        user_metadata:{
-          crew: 'a',
-          role: 'a',
-          tools: 'a',
-          honor: 'a',
-          reputation: 'a',
-          description: 'a',
-        }
-      },
+      nickname: 'JohnDoe',
+      crew: 'a',
+      role: 'a',
+      tools: 'a',
+      honor: 'a',
+      reputation: 'a',
+      description: 'a',
     }
   }
 
   componentWillMount(){
     console.log('UserProfileContainer:componentDidMount');
-    if(this.props.authed.user_metadata)
-      this.setState({user: this.props.authed});
+    if(this.props.authed.user_metadata){
+      this.setState({nickname: this.props.authed.nickname});
+      this.setState({picture: this.props.authed.picture});
+      this.setState({crew: this.props.authed.user_metadata.crew});
+      this.setState({role: this.props.authed.user_metadata.role});
+      this.setState({tools: this.props.authed.user_metadata.tools});
+      this.setState({honor: this.props.authed.user_metadata.honor});
+      this.setState({reputation: this.props.authed.user_metadata.reputation});
+      this.setState({description: this.props.authed.user_metadata.description});
+    }
   }
 
   toggleEdit(){
     console.log('UserProfileContainer:toggleEdit');
+    // console.log(this.state);
+    if(!this.state.editing){
+      this.setState()
+    }
     this.setState({editing:!this.state.editing});
   }
 
-  handleChange(e){
-    console.log(e.target);
-    this.setState()
-    this.state.user.user_metadata[e.target.name] = e.target.value;
-    console.log(this.state.user.user_metadata[e.target.name]);
-  }
+  handleChange(name, e){
+    this.setState({[name]: e.target.value});
+}
 
   render(){
-    console.log('UserProfileContainer:render');
+    // console.log('UserProfileContainer:render');
     if(!this.props.authed.user_metadata)
       return <Callback></Callback>
     else
     { return (
-      <StrippedContainer header={this.state.user.nickname} className="half">
+      <StrippedContainer header={this.state.nickname} className="half">
         <FlexWrapper>
-          <Img src={this.state.user.picture}>
+          <Img src={this.state.picture}>
             <div className='glow'>
             </div>
           </Img>
           <Properties>
             <Header> <Label background={Crew}> Crew:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' name='crew' value={this.state.user.user_metadata.crew} onChange={this.handleChange.bind(this)}/>
-                :  <Highlight>{this.state.user.user_metadata.crew}</Highlight>
+                ?  <Input className='ofForm' name='crew' value={this.state.crew} onChange={this.handleChange.bind(this, 'crew')}/>
+                :  <Highlight>{this.state.crew}</Highlight>
               }
             </Header>
             <Header> <Label background={Role}> Role:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' name='role' value={this.state.user.user_metadata.role} onChange={this.handleChange.bind(this)}/>
-                :  <Highlight>{this.state.user.user_metadata.role}</Highlight>
+                ?  <Input className='ofForm' name='role' value={this.state.role} onChange={this.handleChange.bind(this, 'role')}/>
+                :  <Highlight>{this.state.role}</Highlight>
               }
             </Header>
             <Header> <Label background={Tool}> Tools:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' name='tools' value={this.state.user.user_metadata.tools} onChange={this.handleChange.bind(this)}/>
-                :  <Highlight>{this.state.user.user_metadata.tools}</Highlight>
+                ?  <Input className='ofForm' name='tools' value={this.state.tools} onChange={this.handleChange.bind(this, 'tools')}/>
+                :  <Highlight>{this.state.tools}</Highlight>
               }
             </Header>
             <Header> <Label background={Honor}> Honor:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' name='honor' value={this.state.user.user_metadata.honor} onChange={this.handleChange.bind(this)}/>
-                :  <Highlight>{this.state.user.user_metadata.honor}</Highlight>
+                ?  <Input className='ofForm' name='honor' value={this.state.honor} onChange={this.handleChange.bind(this, 'honor')}/>
+                :  <Highlight>{this.state.honor}</Highlight>
               }
             </Header>
             <Header> <Label background={Reputation}> Reputation:</Label>
               {this.state.editing
-                ?  <Input className='ofForm' name='reputation' value={this.state.user.user_metadata.reputation} onChange={this.handleChange.bind(this)}/>
-                :  <Highlight>{this.state.user.user_metadata.reputation}</Highlight>
+                ?  <Input className='ofForm' name='reputation' value={this.state.reputation} onChange={this.handleChange.bind(this, 'reputation')}/>
+                :  <Highlight>{this.state.reputation}</Highlight>
               }
             </Header>
             {this.state.editing
@@ -182,9 +189,9 @@ class UserProfileContainer extends Component{
         <Divider></Divider>
         <BottomWrapper>
           {this.state.editing
-            ? <Textarea name='description' value={this.state.user.user_metadata.description} onChange={this.handleChange.bind(this)}></Textarea>
+            ? <Textarea name='description' value={this.state.description} onChange={this.handleChange.bind(this, 'description')}></Textarea>
             : <p>
-                {this.state.user.user_metadata.description}
+                {this.state.description}
               </p>
           }
         </BottomWrapper>
