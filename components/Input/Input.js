@@ -20,5 +20,5 @@ export default (props) =>
     }
 `;
 
-    return (<Input type={props.type} onChange={props.onChange} name={props.name} {...props}>{props.children}</Input>)
+    return (<Input {...props}/>)
   };

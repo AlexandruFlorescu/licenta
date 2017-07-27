@@ -127,14 +127,16 @@ class UserProfileContainer extends Component{
   toggleEdit(){
     console.log('UserProfileContainer:toggleEdit');
     // console.log(this.state);
-    if(!this.state.editing){
-      this.setState()
-    }
+    // if(!this.state.editing){
+    //   this.setState()
+    // }
     this.setState({editing:!this.state.editing});
   }
 
   handleChange(name, e){
+    console.log(this.state);
     this.setState({[name]: e.target.value});
+    console.log(this.state);
 }
 
   render(){
