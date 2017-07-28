@@ -24,8 +24,8 @@ class UserCrewProfileContainer extends Component{
   render(){
     return (
         <Container>
-          <CrewProfileContainer></CrewProfileContainer>
-          <UserProfileContainer {...this.props.states}></UserProfileContainer>
+          <CrewProfileContainer ></CrewProfileContainer>
+          <UserProfileContainer actions = {{updateUser: this.props.actions.updateUser}} {...this.props.states}></UserProfileContainer>
         </Container>
     )
   }

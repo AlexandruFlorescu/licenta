@@ -39,6 +39,7 @@ class Main extends Component{
           </Route>
           <Route exact path="/userProfile" >
             <UserCrewProfileContainer
+              actions = {{updateUser: this.props.actions.updateUser}}
               states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed}}/>
           </Route>
           <Route exact path="/contact">

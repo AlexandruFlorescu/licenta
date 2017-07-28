@@ -14,10 +14,11 @@ let actions = {
       .then(respJson=>dispatch({type:c.INIT_USERS, payload:respJson}))
     }
   },
-  updateUser: function(userId, body) {
+  updateUser: function(user_id, body) {
+    console.log(user_id);
     return dispatch => {
-      fetch('https://seastar.eu.auth0.com/api/v2/users/' + userId, {
-        method: 'PUT',
+      fetch('https://seastar.eu.auth0.com/api/v2/users/' + user_id, {
+        method: 'PATCH',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -25,7 +26,13 @@ let actions = {
         },
         body:JSON.stringify(body)
       }).then(resp=>resp.json())
-      .then(respJson=>/* DISPACH FOR REDUX UPDATE*/console.log(respJson))
+      .then(respJson=>{dispatch({type: c.UPDATE_USER,
+                                payload: {user_id: user_id, body}
+                              })
+                       dispatch({type: c.LOGIN_UPDATE,
+                                payload: body })
+                     }
+            )
     }
   },
   getUser: function(userId) {

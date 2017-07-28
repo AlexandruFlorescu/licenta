@@ -124,20 +124,30 @@ class UserProfileContainer extends Component{
     }
   }
 
-  toggleEdit(){
+  edit(){
     console.log('UserProfileContainer:toggleEdit');
-    // console.log(this.state);
-    // if(!this.state.editing){
-    //   this.setState()
-    // }
-    this.setState({editing:!this.state.editing});
+    this.setState({editing:true});
+  }
+  save(){
+    console.log('UserProfileContainer:save');
+    this.setState({editing:false});
+    this.props.actions.updateUser(this.props.authed.user_id,{user_metadata:{
+      crew: this.state.crew,
+      role: this.state.role,
+      tools: this.state.tools,
+      honor: this.state.honor,
+      reputation: this.state.reputation,
+      description: this.state.description,
+    }});
+    // console.log();
+    // console.log(this.props);
   }
 
   handleChange(name, e){
     console.log(this.state);
     this.setState({[name]: e.target.value});
     console.log(this.state);
-}
+  }
 
   render(){
     // console.log('UserProfileContainer:render');
@@ -183,8 +193,8 @@ class UserProfileContainer extends Component{
               }
             </Header>
             {this.state.editing
-               ? <Button onClick={this.toggleEdit.bind(this)}> Save! </Button>
-               : <Button onClick={this.toggleEdit.bind(this)}> Edit! </Button>
+               ? <Button onClick={this.save.bind(this)}> Save! </Button>
+               : <Button onClick={this.edit.bind(this)}> Edit! </Button>
            }
           </Properties>
         </FlexWrapper>
