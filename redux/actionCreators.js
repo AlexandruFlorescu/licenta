@@ -48,7 +48,7 @@ let actions = {
       .then(respJson=>
               dispatch({type: c.LOGIN_SUCCESS,
                       payload: respJson })
-    )
+                    )
     }
   },
   loginUser: function(userId) {

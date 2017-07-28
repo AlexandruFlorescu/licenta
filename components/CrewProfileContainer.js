@@ -42,18 +42,12 @@ const BottomWrapper = styled.div`
   padding: 5px;
   `;
 
-const CrewLine = styled.div`
-
-  `;
 const Divider = styled.div`
   width:100%;
   height:1px;
   background: ${props=>props.theme.color};
   `;
 
-const Column = styled.ul`
-  width: 50%;
-  `;
 
 const SImg = styled.img`
   background-color: red;
@@ -62,15 +56,27 @@ const SImg = styled.img`
   clip-path: circle(50% at center);
   shape-outside: circle(50%);
   border-radius:50%;
-  display: inline-block;
+  display: float;
   margin-right: 5px;
   `;
 
-const Line = styled.li`
-  display: inline;
-  border: 1px solid ${props=>props.theme.color};
-  margin-bottom: 5px;
+const Header = styled.h2`
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
   `;
+
+const Column = styled.ul`
+  width: 50%;
+  height: 100%;
+  `;
+
+const Block = styled.li`
+  display: inline-block;
+  width: 100%;
+  height: 15%;
+  border: 1px solid ${props=>props.theme.color};
+`;
 
 
 class CrewProfileContainer extends Component{
@@ -93,23 +99,40 @@ class CrewProfileContainer extends Component{
         </TopWrapper>
         <Divider></Divider>
         <BottomWrapper>
-
           <Column>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
+            <Block>
+              <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                            <Header> CrewmemberName</Header> <br/>
+            </Block>
+            <Block>
+              <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                            <Header> CrewmemberName</Header> <br/>
+            </Block>
+            <Block>
+              <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                            <Header> CrewmemberName</Header> <br/>
+            </Block>
+            <Block>
+              <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                            <Header> CrewmemberName</Header> <br/>
+            </Block>
+            <Block>
+              <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                            <Header> CrewmemberName</Header> <br/>
+            </Block>
           </Column>
-
           <Column>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
-            <Line><SImg></SImg>Role: CrewMemberRole<br/> CrewmemberName</Line> <br/>
+            <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                          <Header> CrewmemberName</Header> <br/>
+            <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                          <Header> CrewmemberName</Header> <br/>
+            <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                          <Header> CrewmemberName</Header> <br/>
+            <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                          <Header> CrewmemberName</Header> <br/>
+            <SImg></SImg> <Header>Role: CrewMemberRole</Header> <br/>
+                          <Header> CrewmemberName</Header> <br/>
           </Column>
-
         </BottomWrapper>
       </StrippedContainer>
     )
