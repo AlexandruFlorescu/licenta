@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import { invert } from 'polished'
 
 const TicksTray = styled.div`
   margin: 10px;
@@ -30,6 +31,20 @@ const Wrapper = styled.div`
   background-color:white;
   box-shadow: 0px 3px 3px 2px rgba(0,0,0,.3);
   border-top: 15px solid ${props => props.theme.color};
+  transition: background-color 0.5s ease-out;
+
+  &:hover{
+    color: white;
+    background-color: ${props => props.theme.color};
+  }
+
+  &:hover h3{
+    color: white;
+  }
+
+  &:hover div div {
+    border: 1px solid ${props=> invert(props.theme.color)};
+  }
   `;
 
 class ColorTicks extends Component{

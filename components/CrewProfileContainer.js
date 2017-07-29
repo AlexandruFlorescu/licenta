@@ -48,7 +48,6 @@ const Divider = styled.div`
   background: ${props=>props.theme.color};
   `;
 
-
 const SImg = styled.img`
   background-color: red;
   width: 20px;
