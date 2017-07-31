@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import classnames from 'classnames';
 
 const StrippedContainer = styled.div`
-height: 95%;
+height: 95vh;
 width: 90%;
 margin-left:101px;
 display: inline;
@@ -12,7 +12,7 @@ box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3);
 border-radius: 5px;
 
 > .upperStrip{
-  height: 15%;
+  height: 18.14vh;
   width: 100%;
   background-color: ${props => props.theme.color};
   display: flex;

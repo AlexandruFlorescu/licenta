@@ -20,7 +20,6 @@ const NavWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin-top: calc(2.5vh + 5px);
   `;
 const Divider = styled.div`
   height: 15px;

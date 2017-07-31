@@ -77,7 +77,8 @@ body {
 }
 main{
 	flex: 9;
-  height: 100vh;
+  height: 95vh;
+	margin-top: 2.5vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;

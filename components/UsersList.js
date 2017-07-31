@@ -7,10 +7,9 @@ import UserCard from './UserCard'
 
 //stuff I should have declared someplace else
 const DashboardWrapper= styled.div`
-  width: 95%;
-  height: 95%;
+  width: 90%;
+  height: 95vh;
   margin-left:101px;
-  padding: 5px;
   display: flex;
   flex-wrap: wrap;
   align-items: space-around;

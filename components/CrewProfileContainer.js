@@ -22,10 +22,12 @@ const Img = styled.img`
   border-radius:50%;
   box-shadow: inset 0px 0px 5px 2px ${props=> props.theme.color}, inset -7px -2px 20px 10px rgba(255,255,255,.4);
   display: inline;
+  float: left;
   `;
 
 const TopWrapper = styled.div`
   display: flex;
+  height: 29.36vh;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -38,7 +40,7 @@ const BottomWrapper = styled.div`
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  height:50%;
+  height: 42.3vh;
   padding: 5px;
   `;
 
@@ -52,18 +54,19 @@ const SImg = styled.img`
   background-color: red;
   width: 22px;
   height: 22px;
-  float: left;
   margin-right: 5px;
   margin-top: 5px;
   `;
 
 const Table = styled.table`
   width: 100%;
-  height: 100%;
+  height: calc(42.3vh - 10px);
   border-collapse: collapse;
+  overflow-y=scroll;
 `;
 
 const Tr = styled.tr`
+  min-height : 35px;
   &:nth-child(even){
     background: ${props=>lighten(0.4,props.theme.color)};
   }
@@ -112,40 +115,57 @@ class CrewProfileContainer extends Component{
         <BottomWrapper>
             <Table>
               <Tr>
+                <Th>Link</Th>
                 <Th>Role</Th>
                 <Th>Name</Th>
-                <Th>Tools</Th>
               </Tr>
               <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
-                <Td>HTML5</Td>
               </Tr>
               <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
-                <Td>HTML5</Td>
               </Tr>
               <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
-                <Td>HTML5</Td>
               </Tr>
               <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
-                <Td>HTML5</Td>
               </Tr>
               <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
-                <Td>HTML5</Td>
               </Tr>
               <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
-                <Td>HTML5</Td>
               </Tr>
+              <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
+                <Td>Captain</Td>
+                <Td>Alexandru Florescu</Td>
+              </Tr>
+              <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
+                <Td>Captain</Td>
+                <Td>Alexandru Florescu</Td>
+              </Tr>
+              <Tr>
+                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
+                <Td>Captain</Td>
+                <Td>Alexandru Florescu</Td>
+              </Tr>
+
+
             </Table>
         </BottomWrapper>
       </StrippedContainer>
