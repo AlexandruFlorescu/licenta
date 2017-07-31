@@ -40,11 +40,13 @@ mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
 app.get('/api/getCrews', checkJwt, function(req, resp) {
+  console.log('dasdasdasdasdasdsa');
   Crews.getCrews((err,crews)=>{
     if(err){
       throw err;
       res.json(err);
     }
+    console.log('-----------------------------------------');
     console.log(crews);
     res.json(crews);
   })

@@ -75,9 +75,6 @@ body {
     font-size: 15px;
 		background: url('vertical-waves.png') ,radial-gradient(var(--ICE),  var(--aquamarine)) fixed;
 }
-.app{
-	height: 95vh;
-}
 main{
 	flex: 9;
   height: 100vh;

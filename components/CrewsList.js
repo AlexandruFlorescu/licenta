@@ -15,6 +15,7 @@ const DashboardWrapper= styled.div`
   flex-wrap: wrap;
   align-items: space-around;
   justify-content: space-around;
+  border: 1px solid red;
   `;
 
 class CrewsList extends Component{
@@ -24,6 +25,7 @@ class CrewsList extends Component{
   }
 
   render(){
+    console.log(this.props.crews);
     return (
       <DashboardWrapper>
           {this.props.crews}

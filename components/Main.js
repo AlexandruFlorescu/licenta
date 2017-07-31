@@ -18,7 +18,7 @@ class Main extends Component{
   componentWillMount(){
     if(this.props.users.length <= 0 && localStorage.getItem('manageToken'))
       this.props.actions.initializeUsers();
-    if(localStorage.getItem('manageToken'))
+    if(this.props.crews.length <= 0 && localStorage.getItem('manageToken'))
       this.props.actions.initializeCrews();
     if(this.props.auth.isAuthenticated())
       {const { userProfile, getProfile } = this.props.auth;
@@ -47,7 +47,8 @@ class Main extends Component{
             </ContactForm>
           </Route>
           <Route exact path="/crewsList">
-            <CrewsList>
+            <CrewsList
+              states={{crews: this.props.crews}}>
 
             </CrewsList>
           </Route>

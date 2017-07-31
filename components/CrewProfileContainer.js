@@ -57,49 +57,37 @@ const SImg = styled.img`
   margin-top: 5px;
   `;
 
-const Header = styled.h2`
-  font-size: 16px;
-  font-weight: 500;
-  text-align: left;
-  `;
-
-const Column = styled.ul`
-  width: 50%;
-  height: auto;
-  &:nth-child(1){
-    border-right: 2px solid ${props=>props.theme.color};
-  }
-  `;
-
-const Block = styled.li`
-  display: inline-block;
-  width: 100%;
-  height: 15%;
-  &:nth-child(1){
-    border-bottom: 2px solid ${props=>props.theme.color};
-  }
-`;
-
 const Table = styled.table`
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
 `;
 
 const Tr = styled.tr`
   &:nth-child(even){
     background: ${props=>lighten(0.4,props.theme.color)};
   }
+  &:nth-child(odd){
+    background: ${props=>lighten(0.3,props.theme.color)};
+  }
+  &:hover {
+    background-color: ${props=>props.theme.color};
+    color: white;
+  }
 `;
 
 const Th = styled.th`
   background: ${props=>props.theme.color};
+  color: white;
+  vertical-align: middle;
   border: 1px solid black;
 `;
 
 const Td = styled.td`
   text-align: center;
   vertical-align: middle;
-  border: 1px solid ${props=>props.theme.color};
+  border: 1px solid black;
+
 `;
 
 class CrewProfileContainer extends Component{

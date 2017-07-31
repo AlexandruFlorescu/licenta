@@ -24,7 +24,7 @@ const Img = styled.div`
   shape-outside: circle(50%);
   box-shadow: inset 0px 0px 5px 2px ${props=> props.theme.color}, inset -7px -2px 20px 10px rgba(255,255,255,.4);
   border-radius:50%;
-  display: inline;
+  float: left;
 
   transition: all 0.6s ease-in-out;
   transform-style: preserve-3d;
@@ -61,6 +61,18 @@ const Label = styled.label`
     height:30px;
   }
   `;
+
+const UpperWrap = styled.div`
+    height: 100px;
+`;
+const RightWrap = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+`;
+
 const Highlight = styled.span`
   border: 1px solid ${props=>props.theme.color};
   background-color: ${props=> lighten(0.4, props.theme.color)};
@@ -71,19 +83,19 @@ class UserCard extends Component{
   render(){
       return (
           <StrippedCard header={this.props.user.nickname}>
+            <UpperWrap>
+              <Img src={this.props.user.picture}></Img>
+              <RightWrap>
+                <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.user.user_metadata.honor}</Highlight> </Header>
+                <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.user.user_metadata.reputation}</Highlight></Header>
+              </RightWrap>
+            </UpperWrap>
+            <Divider></Divider>
             <CardWrapper>
-              <Img src={this.props.user.picture}>
-                <div className='glow'>
-                </div>
-              </Img>
-              <Divider/>
-              <div>
+
                 <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.user.user_metadata.crew}</Highlight> </Header>
                 <Header> <Label background={Role}> Role:</Label> <Highlight>{this.props.user.user_metadata.role}</Highlight></Header>
                 <Header> <Label background={Tool}> Tools:</Label> <Highlight>{this.props.user.user_metadata.tools}</Highlight></Header>
-                <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.user.user_metadata.honor}</Highlight> </Header>
-                <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.user.user_metadata.reputation}</Highlight></Header>
-              </div>
             </CardWrapper>
           </StrippedCard>
         )

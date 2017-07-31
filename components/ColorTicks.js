@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   }
 
   &:hover div div {
-    border: 1px solid ${props=> invert(props.theme.color)};
+    box-shadow: 0px 0px 0px 1px grey;
   }
   `;
 

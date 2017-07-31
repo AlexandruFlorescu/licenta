@@ -20,6 +20,7 @@ const NavWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  margin-top: calc(2.5vh + 5px);
   `;
 const Divider = styled.div`
   height: 15px;
@@ -56,9 +57,9 @@ class NavBar extends Component{
         {this.props.auth.isAuthenticated() ? <MyLink to='#'><NavButton background={Login} onClick={this.logOut.bind(this)}> Logoff </NavButton> </MyLink>
       : <MyLink to='#'><NavButton background={Login} onClick={this.logIn.bind(this)}> Login </NavButton> </MyLink> }
       <Divider></Divider>
-        <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
-      <Divider></Divider>
         <MyLink to='/crewsList'><NavButton background={Carma}> Crews </NavButton> </MyLink>
+      <Divider></Divider>
+        <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
     </NavWrapper>
     )
   }
