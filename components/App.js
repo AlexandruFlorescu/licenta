@@ -30,7 +30,6 @@ class App extends Component {
             <div className="app">
               <NavBar auth={auth} actions={{changeColor:this.props.actions.changeColor, logOff:this.props.actions.logOff}}/>
               <Main {...this.props} auth={auth}/>
-              <Footer> </Footer>
             </div>
           </ThemeProvider>
     )
@@ -51,3 +50,4 @@ function mapDispatchToProps(dispatch){
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 
 //{this.props.children}
+// <Footer> </Footer>

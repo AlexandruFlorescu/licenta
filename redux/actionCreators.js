@@ -81,13 +81,33 @@ let actions = {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('manageToken'),
         }
-      }).then(resp=>{console.log(resp);resp.json()})
-      .then(respJson => {
-        dispatch({type: c.INIT_CREWS,
-                  payload: respJson})
-      })
+      }).then(resp=>resp.json())
+      .then(respJson => dispatch({type: c.INIT_CREWS,
+                                  payload: respJson})
+            )
     }
   },
+
+  addUserToCrew: function(user, crew){
+    console.log('addUserToCrew');
+    return dispatch=>{
+      fetch('/api/alterCrew', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify({user: user, crew: crew})
+      }).then(resp=> resp.json())
+      .then(respJson => dispatch({
+                    type: c.ADD_USER_TO_CREW,
+                    payload: {user: user, crew: crew}
+                  })
+            )
+    }
+  },
+
   changeColor: function(color){
     return {type: c.CHANGE_COLOR, payload: color};
   }

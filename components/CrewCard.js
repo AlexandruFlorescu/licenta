@@ -5,11 +5,13 @@ import { lighten } from 'polished'
 
 //internals
 import StrippedCard from './StrippedCard'
+import Button from './Button/Button'
 
 //SVGs
 import Role from '../assets/role.svg';
 import Honor from '../assets/honor.svg';
 import Crew from '../assets/crew.svg';
+import Contact from '../assets/contact.svg';
 import Age from '../assets/age.svg';
 import Tool from '../assets/tool.svg';
 import Reputation from '../assets/carma.svg';
@@ -24,7 +26,7 @@ const Img = styled.div`
   shape-outside: circle(50%);
   box-shadow: inset 0px 0px 5px 2px ${props=> props.theme.color}, inset -7px -2px 20px 10px rgba(255,255,255,.4);
   border-radius:50%;
-  display: inline;
+  float: left;
 
   transition: all 0.6s ease-in-out;
   transform-style: preserve-3d;
@@ -61,6 +63,18 @@ const Label = styled.label`
     height:30px;
   }
   `;
+
+const UpperWrap = styled.div`
+    height: 100px;
+`;
+const RightWrap = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+`;
+
 const Highlight = styled.span`
   border: 1px solid ${props=>props.theme.color};
   background-color: ${props=> lighten(0.4, props.theme.color)};
@@ -68,22 +82,29 @@ const Highlight = styled.span`
 
 class UserCard extends Component{
 
+  joinCrew(){
+    // console.log(this.props.crew.users.indexOf(this.props.authed.user_id));
+    if(this.props.crew.users.indexOf(this.props.authed.user_id) < 0)
+      this.props.addUserToCrew(this.props.authed, this.props.crew);
+    // console.log('daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')}
+  }
+
   render(){
       return (
-          <StrippedCard header={this.props.user.nickname}>
+          <StrippedCard header={this.props.crew.name}>
+            <UpperWrap>
+              <Img src={this.props.crew.image}></Img>
+              <RightWrap>
+                <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.crew.honor}</Highlight> </Header>
+                <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.crew.reputation}</Highlight></Header>
+              </RightWrap>
+            </UpperWrap>
+            <Divider></Divider>
             <CardWrapper>
-              <Img src={this.props.user.picture}>
-                <div className='glow'>
-                </div>
-              </Img>
-              <Divider/>
-              <div>
-                <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.user.user_metadata.crew}</Highlight> </Header>
-                <Header> <Label background={Role}> Role:</Label> <Highlight>{this.props.user.user_metadata.role}</Highlight></Header>
-                <Header> <Label background={Tool}> Tools:</Label> <Highlight>{this.props.user.user_metadata.tools}</Highlight></Header>
-                <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.user.user_metadata.honor}</Highlight> </Header>
-                <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.user.user_metadata.reputation}</Highlight></Header>
-              </div>
+                <Header> <Label background={Contact}> Email:</Label> <Highlight>{this.props.crew.email}</Highlight> </Header>
+                <Header> <Label background={Role}> Roles:</Label> <Highlight>{this.props.crew.rolesDefined.join(',')}</Highlight></Header>
+                <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.crew.users.join(',')}</Highlight></Header>
+                <Button onClick={this.joinCrew.bind(this)}> Join </Button>
             </CardWrapper>
           </StrippedCard>
         )

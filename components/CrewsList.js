@@ -7,15 +7,13 @@ import CrewCard from './CrewCard'
 
 //stuff I should have declared someplace else
 const DashboardWrapper= styled.div`
-  width: 95%;
-  height: 95%;
+  width: 90%;
+  height: 95vh;
   margin-left:101px;
-  padding: 5px;
   display: flex;
   flex-wrap: wrap;
   align-items: space-around;
   justify-content: space-around;
-  border: 1px solid red;
   `;
 
 class CrewsList extends Component{
@@ -25,10 +23,10 @@ class CrewsList extends Component{
   }
 
   render(){
-    console.log(this.props.crews);
     return (
       <DashboardWrapper>
-          {this.props.crews}
+        {this.props.states.crews.map((crew)=>
+          <CrewCard key={this.props.states.crews.indexOf(crew)} crew={crew} authed={this.props.states.authed} addUserToCrew={this.props.actions.addUserToCrew}/>)}
       </DashboardWrapper>
     )
   }

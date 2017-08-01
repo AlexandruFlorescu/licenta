@@ -16,9 +16,9 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static('./dist'));
 
-app.get('*', function (req, res) {
-  res.sendFile(path.resolve('client/index.html'));
-});
+// app.get('^(?!\/?api).+$', function (req, res) {
+//   res.sendFile(path.resolve('client/index.html'));
+// });
 
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
@@ -39,21 +39,19 @@ Crews = require('./models/crew.js');
 mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
-app.get('/api/getCrews', checkJwt, function(req, resp) {
-  console.log('dasdasdasdasdasdsa');
+app.get('/api/getCrews', checkJwt, function(req, res) {
   Crews.getCrews((err,crews)=>{
     if(err){
       throw err;
       res.json(err);
     }
-    console.log('-----------------------------------------');
-    console.log(crews);
     res.json(crews);
   })
 })
 
-app.post('/api/setCrew', checkJwt, function(req, resp){
-  Crews.addCrew(crew, (err, crew) =>{
+app.post('/api/alterCrew', checkJwt, function(req, res){
+
+  Crews.addUserToCrew(req.body.user, req.body.crew, (err, crew) =>{
     if(err){
       throw err;
       res.json(err);
@@ -64,6 +62,9 @@ app.post('/api/setCrew', checkJwt, function(req, resp){
 
 var port = 3000;
 
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve('client/index.html'));
+});
 app.listen(port, function(error) {
   if (error) throw error;
   console.log("Express server listening on port", port);

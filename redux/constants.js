@@ -12,4 +12,5 @@ module.exports = {
 
   INIT_CREWS: 'INIT_CREWS',
   CREATE_CREW: 'CREATE_CREW',
+  ADD_USER_TO_CREW: 'ADD_USER_TO_CREW',
 }

@@ -40,7 +40,7 @@ class Main extends Component{
           <Route exact path="/userProfile" >
             <UserCrewProfileContainer
               actions = {{updateUser: this.props.actions.updateUser}}
-              states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed}}/>
+              states={{auth:this.props.auth, users:this.props.users, authed:this.props.authed, crews:this.props.crews}}/>
           </Route>
           <Route exact path="/contact">
             <ContactForm>
@@ -48,8 +48,8 @@ class Main extends Component{
           </Route>
           <Route exact path="/crewsList">
             <CrewsList
-              states={{crews: this.props.crews}}>
-
+              states={{crews: this.props.crews, authed: this.props.authed}}
+              actions={{addUserToCrew: this.props.actions.addUserToCrew}}>
             </CrewsList>
           </Route>
           <Route path="/callback" render={(props)=>{
