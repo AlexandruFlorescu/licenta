@@ -49,7 +49,7 @@ class Main extends Component{
           <Route exact path="/crewsList">
             <CrewsList
               states={{crews: this.props.crews, authed: this.props.authed}}
-              actions={{addUserToCrew: this.props.actions.addUserToCrew}}>
+              actions={{addUserToCrew: this.props.actions.addUserToCrew, updateUser: this.props.actions.updateUser}}>
             </CrewsList>
           </Route>
           <Route path="/callback" render={(props)=>{

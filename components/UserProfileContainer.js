@@ -112,15 +112,49 @@ class UserProfileContainer extends Component{
 
   componentWillMount(){
     console.log('UserProfileContainer:componentDidMount');
-    if(this.props.authed.user_metadata){
-      this.setState({nickname: this.props.authed.nickname});
-      this.setState({picture: this.props.authed.picture});
-      this.setState({crew: this.props.authed.user_metadata.crew});
-      this.setState({role: this.props.authed.user_metadata.role});
-      this.setState({tools: this.props.authed.user_metadata.tools});
-      this.setState({honor: this.props.authed.user_metadata.honor});
-      this.setState({reputation: this.props.authed.user_metadata.reputation});
-      this.setState({description: this.props.authed.user_metadata.description});
+    console.log(this.props.selectedUser);
+    if(this.props.selectedUser){
+      this.setState({nickname: this.props.selectedUser.nickname});
+      this.setState({picture: this.props.selectedUser.picture});
+      this.setState({crew: this.props.crews.find(crew => crew._id == this.props.selectedUser.user_metadata.crew).name});
+      this.setState({role: this.props.selectedUser.user_metadata.role});
+      this.setState({tools: this.props.selectedUser.user_metadata.tools});
+      this.setState({honor: this.props.selectedUser.user_metadata.honor});
+      this.setState({reputation: this.props.selectedUser.user_metadata.reputation});
+      this.setState({description: this.props.selectedUser.user_metadata.description});
+    }
+    else{
+      this.setState({nickname: 'none'});
+      this.setState({picture: 'none'});
+      this.setState({crew: 'none'});
+      this.setState({role: 'none'});
+      this.setState({tools: 'none'});
+      this.setState({honor: 'none'});
+      this.setState({reputation: 'none'});
+      this.setState({description: 'none'});
+    }
+  }
+
+  componentWillReceiveProps(){
+    if(this.props.selectedUser){
+      this.setState({nickname: this.props.selectedUser.nickname});
+      this.setState({picture: this.props.selectedUser.picture});
+      this.setState({crew: this.props.crews.find(crew => crew._id == this.props.selectedUser.user_metadata.crew).name});
+      this.setState({role: this.props.selectedUser.user_metadata.role});
+      this.setState({tools: this.props.selectedUser.user_metadata.tools});
+      this.setState({honor: this.props.selectedUser.user_metadata.honor});
+      this.setState({reputation: this.props.selectedUser.user_metadata.reputation});
+      this.setState({description: this.props.selectedUser.user_metadata.description});
+    }
+    else{
+      this.setState({nickname: 'none'});
+      this.setState({picture: 'none'});
+      this.setState({crew: 'none'});
+      this.setState({role: 'none'});
+      this.setState({tools: 'none'});
+      this.setState({honor: 'none'});
+      this.setState({reputation: 'none'});
+      this.setState({description: 'none'});
     }
   }
 
@@ -131,7 +165,7 @@ class UserProfileContainer extends Component{
   save(){
     console.log('UserProfileContainer:save');
     this.setState({editing:false});
-    this.props.actions.updateUser(this.props.authed.user_id,{user_metadata:{
+    this.props.actions.updateUser(this.props.selectedUser.user_id,{user_metadata:{
       crew: this.state.crew,
       role: this.state.role,
       tools: this.state.tools,
@@ -165,7 +199,7 @@ class UserProfileContainer extends Component{
             <Header> <Label background={Crew}> Crew:</Label>
               {this.state.editing
                 ?  <Input className='ofForm' name='crew' value={this.state.crew} onChange={this.handleChange.bind(this, 'crew')}/>
-                :  <Highlight>{this.state.crew}</Highlight>
+              :  <Highlight>{this.state.crew}</Highlight>
               }
             </Header>
             <Header> <Label background={Role}> Role:</Label>

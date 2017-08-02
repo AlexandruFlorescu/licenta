@@ -26,7 +26,7 @@ class CrewsList extends Component{
     return (
       <DashboardWrapper>
         {this.props.states.crews.map((crew)=>
-          <CrewCard key={this.props.states.crews.indexOf(crew)} crew={crew} authed={this.props.states.authed} addUserToCrew={this.props.actions.addUserToCrew}/>)}
+          <CrewCard key={this.props.states.crews.indexOf(crew)} crew={crew} authed={this.props.states.authed} addUserToCrew={this.props.actions.addUserToCrew} updateUser={this.props.actions.updateUser}/>)}
       </DashboardWrapper>
     )
   }

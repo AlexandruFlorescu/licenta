@@ -12,11 +12,12 @@ import Crew from '../assets/crew.svg';
 import Age from '../assets/age.svg';
 import Tool from '../assets/tool.svg';
 import Reputation from '../assets/carma.svg';
+import Contact from '../assets/contact.svg';
 
 const Img = styled.img`
-  background-color: red;
-  width: 130px;
-  height: 130px;
+  background-color: ${props=> props.theme.color};
+  width: 150px;
+  height: 150px;
   clip-path: circle(50% at center);
   shape-outside: circle(50%);
   border-radius:50%;
@@ -93,22 +94,52 @@ const Td = styled.td`
 
 `;
 
+const Header = styled.h3`
+  color: ${props=>props.theme.color};
+  font-weight: 700;
+  text-align:center;
+  width:100%;
+  line-height: 30px;
+  `;
+const Label = styled.label`
+  color: black;
+  width: 125px;
+  float: left;
+
+  &:before{
+    content: 'zzz';
+    color: transparent;
+    background: url(${props=>props.background}) no-repeat 50% 50%;
+    background-size: 20px;
+    width:30px;
+    height:30px;
+  }
+  `;
+
+const Highlight = styled.span`
+  border: 1px solid ${props=>props.theme.color};
+  background-color: ${props=> lighten(0.4, props.theme.color)};
+  `;
+
+
 class CrewProfileContainer extends Component{
   constructor(props){
     super(props);
   }
 
+  changedSelectedUser(member) {
+    this.props.changedSelectedUser(member);
+  }
+
   render(){
     return (
-      <StrippedContainer header='CrewName' className="half">
+      <StrippedContainer header={this.props.crews[0].name} className="half">
         <TopWrapper>
-          <Img></Img>
+          <Img src={this.props.crews[0].image}></Img>
           <div>
-            <div>This is aa text</div>
-            <div>This is a text</div>
-            <div>This is a text</div>
-            <div>This is a text</div>
-            <div>This is a text</div>
+            <Header> <Label background={Contact}> Email:</Label> <Highlight>{this.props.crews[0].email}</Highlight> </Header>
+            <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.crews[0].honor}</Highlight></Header>
+            <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.crews[0].reputation}</Highlight></Header>
           </div>
         </TopWrapper>
         <Divider></Divider>
@@ -119,6 +150,15 @@ class CrewProfileContainer extends Component{
                 <Th>Role</Th>
                 <Th>Name</Th>
               </Tr>
+              {
+                this.props.crews[0].users.map( (crewMemberId) =>
+                  {let crewMember = this.props.users.find(user => user.user_id == crewMemberId);
+                    return (<Tr>
+                              <Td><SImg src={crewMember.picture} onClick={this.changedSelectedUser.bind(this, crewMember)} /></Td>
+                              <Td>{crewMember.user_metadata.role}</Td>
+                              <Td>{crewMember.nickname}</Td>
+                            </Tr>)}
+                )}
               <Tr>
                 <Td><SImg src={require('./../assets/matthew.png')}/></Td>
                 <Td>Captain</Td>
@@ -134,38 +174,6 @@ class CrewProfileContainer extends Component{
                 <Td>Captain</Td>
                 <Td>Alexandru Florescu</Td>
               </Tr>
-              <Tr>
-                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
-                <Td>Captain</Td>
-                <Td>Alexandru Florescu</Td>
-              </Tr>
-              <Tr>
-                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
-                <Td>Captain</Td>
-                <Td>Alexandru Florescu</Td>
-              </Tr>
-              <Tr>
-                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
-                <Td>Captain</Td>
-                <Td>Alexandru Florescu</Td>
-              </Tr>
-              <Tr>
-                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
-                <Td>Captain</Td>
-                <Td>Alexandru Florescu</Td>
-              </Tr>
-              <Tr>
-                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
-                <Td>Captain</Td>
-                <Td>Alexandru Florescu</Td>
-              </Tr>
-              <Tr>
-                <Td><SImg src={require('./../assets/matthew.png')}/></Td>
-                <Td>Captain</Td>
-                <Td>Alexandru Florescu</Td>
-              </Tr>
-
-
             </Table>
         </BottomWrapper>
       </StrippedContainer>

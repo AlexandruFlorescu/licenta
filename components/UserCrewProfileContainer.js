@@ -20,13 +20,21 @@ const Container = styled.div`
 class UserCrewProfileContainer extends Component{
   constructor(props){
     super(props);
+    this.changedSelectedUser = this.changedSelectedUser.bind(this);
+    this.state = {selectedUser: null }
+
+  }
+
+  changedSelectedUser(sU){
+    this.setState({selectedUser: sU});
+    // console.log(this.state.selectedUser);
   }
 
   render(){
     return (
         <Container>
-          <CrewProfileContainer {...this.props.states}></CrewProfileContainer>
-          <UserProfileContainer actions = {{updateUser: this.props.actions.updateUser}} {...this.props.states}></UserProfileContainer>
+          <CrewProfileContainer {...this.props.states} changedSelectedUser={this.changedSelectedUser}></CrewProfileContainer>
+          <UserProfileContainer actions = {{updateUser: this.props.actions.updateUser}} selectedUser={this.state.selectedUser} {...this.props.states}></UserProfileContainer>
         </Container>
     )
   }

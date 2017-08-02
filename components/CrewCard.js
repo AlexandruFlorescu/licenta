@@ -31,23 +31,23 @@ const Img = styled.div`
   transition: all 0.6s ease-in-out;
   transform-style: preserve-3d;
   `;
+  const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  `;
+  const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${props=>props.theme.color};
+  `;
 const Header = styled.h3`
   color: ${props=>props.theme.color};
   font-weight: 700;
   text-align:center;
   width:100%;
   line-height: 30px;
-  `;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  `;
-const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: ${props=>props.theme.color};
   `;
 const Label = styled.label`
   color: black;
@@ -86,6 +86,9 @@ class UserCard extends Component{
     // console.log(this.props.crew.users.indexOf(this.props.authed.user_id));
     if(this.props.crew.users.indexOf(this.props.authed.user_id) < 0)
       this.props.addUserToCrew(this.props.authed, this.props.crew);
+    if(this.props.authed.user_metadata.crew != this.props.crew._id)
+      this.props.updateUser(this.props.authed.user_id,{user_metadata: {...this.props.authed.user_metadata, crew: this.props.crew._id }})
+        //  console.log(
     // console.log('daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')}
   }
 
