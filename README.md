@@ -1,3 +1,3 @@
-# react-todo-list
+# SeaStar
 
-This is a simple todo list app built with React, Redux and Webpack. I built this app during my [tutorial series on YouTube](https://www.youtube.com/playlist?list=PLQDnxXqV213JJFtDaG0aE9vqvp6Wm7nBg).
+This is a social network for teams and businesses. It's purpose is to facilitate writing captivating stories about the company's work and also increase the dynamism of the workplace, get people to know eachother and bind better as a team.
