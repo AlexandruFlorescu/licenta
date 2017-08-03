@@ -81,6 +81,7 @@ const Highlight = styled.span`
 class UserCard extends Component{
 
   render(){
+    console.log(this.props.crews);
       return (
           <StrippedCard header={this.props.user.nickname}>
             <UpperWrap>
@@ -93,7 +94,7 @@ class UserCard extends Component{
             <Divider></Divider>
             <CardWrapper>
 
-                <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.user.user_metadata.crew}</Highlight> </Header>
+                <Header> <Label background={Crew}> Crew:</Label> <Highlight>{this.props.crews.find(crew => crew._id == this.props.user.user_metadata.crew) ? this.props.crews.find(crew => crew._id == this.props.user.user_metadata.crew).name : 'none'}</Highlight> </Header>
                 <Header> <Label background={Role}> Role:</Label> <Highlight>{this.props.user.user_metadata.role}</Highlight></Header>
                 <Header> <Label background={Tool}> Tools:</Label> <Highlight>{this.props.user.user_metadata.tools}</Highlight></Header>
             </CardWrapper>

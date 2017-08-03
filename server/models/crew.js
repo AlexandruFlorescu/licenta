@@ -52,7 +52,7 @@ module.exports.addCrew = (crew, callback) => {
 }
 
 module.exports.addUserToCrew = (user, crew, callback) => {
-  Crews.update({_id: crew._id}, {$push: {users: user.user_id}}, callback  )
+  Crews.update({_id: crew._id}, {$set: {users:[]}}, callback  )
 }
 
 // {$set: {users:[]}}

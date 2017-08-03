@@ -86,7 +86,7 @@ class UserCard extends Component{
     // console.log(this.props.crew.users.indexOf(this.props.authed.user_id));
     if(this.props.crew.users.indexOf(this.props.authed.user_id) < 0)
       this.props.addUserToCrew(this.props.authed, this.props.crew);
-    if(this.props.authed.user_metadata.crew != this.props.crew._id)
+    // if(this.props.authed.user_metadata.crew != this.props.crew._id)
       this.props.updateUser(this.props.authed.user_id,{user_metadata: {...this.props.authed.user_metadata, crew: this.props.crew._id }})
         //  console.log(
     // console.log('daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')}

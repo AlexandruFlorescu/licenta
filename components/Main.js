@@ -35,7 +35,8 @@ class Main extends Component{
         <Switch>
           <Route exact path="/">
             <UsersList
-              users={this.props.users}/>
+              users={this.props.users}
+              crews={this.props.crews}/>
           </Route>
           <Route exact path="/userProfile" >
             <UserCrewProfileContainer

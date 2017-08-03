@@ -18,6 +18,7 @@ export default (props) =>
     width: 100px;
     background-color: white;
     border-top: 15px solid ${props => props.theme.color};
+    box-shadow: inset 0 -5px 5px -5px grey;
 
     &:hover {
       background-color: ${props => props.theme.color};

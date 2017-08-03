@@ -26,7 +26,7 @@ class UserList extends Component{
     return (
       <DashboardWrapper>
           {this.props.users.map( (user)=>
-            <UserCard key={this.props.users.indexOf(user)} user={user}/> )}
+            <UserCard key={this.props.users.indexOf(user)} user={user} crews={this.props.crews}/> )}
       </DashboardWrapper>
     )
   }
